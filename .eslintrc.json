@@ -1,34 +1,32 @@
 {
-   "env": {
-      "browser": true,
-      "es2021": true
-   },
-   "extends": [
-      "plugin:react/recommended",
-      "airbnb",
-      "plugin:jest/recommended",
-      "plugin:react-hooks/recommended",
-      "prettier"
-   ],
-   "parserOptions": {
-      "ecmaFeatures": {
-         "jsx": true
-      },
-      "ecmaVersion": 12,
-      "sourceType": "module"
-   },
-   "plugins": ["react", "jest", "prettier"],
-   "rules": {
-      "rules": {
-         "prettier/prettier": "error"
-      }
-   },
-   "overrides": [
-       {
-           "files":["**/*.test.js"],
-           "env": {
-               "jest": true
-           }
-       }
-   ]
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb",
+        "plugin:jest/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": ["react", "jest", "prettier"],
+    "rules": {
+        "prettier/prettier": "error"
+    },
+    "overrides": [
+        {
+            "files":["**/*.test.js"],
+            "env": {
+                "jest": true
+            }
+        }
+    ]
 }
