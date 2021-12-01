@@ -19,7 +19,8 @@
     "lint": "eslint --init",
     "lints": "eslint .",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "lint:index": "eslint --fix ./src/App.js",
+    "format": "prettier --config ./.prettierrc  './**/*.{js,jsx,ts,tsx,css,md,json}' --write "
   },
   "eslintConfig": {
     "extends": [
@@ -51,7 +52,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "prettier": "2.4.1",
-    "prettier-eslint": "^13.0.0"
+    "prettier": "2.4.1"
   }
 }
