@@ -29,7 +29,8 @@
             "parser": "flow",
             "trailingComma": "es5",
             "tabWidth": 3,
-            "semi": false
+            "semi": false,
+            "endOfLine": "auto"
          }
       ],
       "func-names": "off",
