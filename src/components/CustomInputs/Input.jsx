@@ -1,10 +1,43 @@
 import PropTypes from 'prop-types'
-import FormControl from '@mui/material/FormControl'
-import InputLabel from '@mui/material/InputLabel'
-import Input from '@mui/material/Input'
-import Clear from '@mui/icons-material/Clear'
-import Check from '@mui/icons-material/Check'
+// eslint-disable-next-line no-unused-vars
+import { experimentalStyled as styled, makeStyles } from '@mui/material/styles'
+import MuiFormControl from '@mui/material/FormControl'
+import MuiInputLabel from '@mui/material/InputLabel'
+import MuiInput from '@mui/material/Input'
+import ClearIcon from '@mui/icons-material/Clear'
+import CheckIcon from '@mui/icons-material/Check'
+import styles from './customInputStyles'
 
+// eslint-disable-next-line no-unused-vars
+const FormControlRoot = styled(MuiFormControl)(({ theme }) => ({
+   ...styles.formControl,
+}))
+
+const InputLabelRoot = styled(MuiInputLabel)(
+   ({ error, success, rtlActive }) => ({
+      ...(error && styles.labelRootError),
+      ...styles.labelRoot,
+      ...(success && !error && styles.labelRootSuccess),
+      ...(rtlActive && styles.underline),
+   })
+)
+const InputRoot = styled(MuiInput)(
+   ({ error, success, labelText, disabled }) => ({
+      ...styles.underline,
+      ...(labelText === undefined && styles.marginTop),
+      ...(error && styles.underlineError),
+      ...(success && !error && styles.underlineSuccess),
+      ...(disabled && styles.disabled),
+   })
+)
+const ClearIconRoot = styled(ClearIcon)(() => ({
+   ...styles.feedback,
+   ...styles.labelRootError,
+}))
+const CheckIconRoot = styled(CheckIcon)(() => ({
+   ...styles.feedback,
+   ...styles.labelRootSuccess,
+}))
 const CustomInput = (props) => {
    const {
       formControlProps,
@@ -26,20 +59,27 @@ const CustomInput = (props) => {
       step: inputProps && inputProps.step ? inputProps.step : undefined,
    }
    return (
-      <FormControl {...formControlProps} className="#">
+      <FormControlRoot
+         {...formControlProps}
+         className={formControlProps.className}
+      >
          {labelText !== undefined ? (
-            <InputLabel className="ddh" htmlFor={id} {...labelProps}>
+            <InputLabelRoot htmlFor={id} {...labelProps}>
                {labelText}
-            </InputLabel>
+            </InputLabelRoot>
          ) : null}
-         <Input
-            className="hjdkd"
+         <InputRoot
+            classes={{
+               root: marginTop,
+               disabled: styles.disabled,
+               underline: underlineClasses,
+            }}
             id={id}
             {...inputProps}
             inputProps={newInputProps}
          />
-         {error ? <Clear /> : success ? <Check /> : null}
-      </FormControl>
+         {error ? <ClearIconRoot /> : success ? <CheckIconRoot /> : null}
+      </FormControlRoot>
    )
 }
 
