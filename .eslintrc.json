@@ -1,7 +1,8 @@
 {
    "env": {
       "browser": true,
-      "es2021": true
+      "es2021": true,
+      "jest": true
    },
    "extends": [
       "eslint:recommended",
@@ -19,9 +20,11 @@
    },
    "plugins": ["react", "prettier"],
    "rules": {
-      "react/jsx-uses-react": "error",
+      "arrow-body-style": ["error", "as-needed"],
+      "react/react-in-jsx-scope": "off",
+      // "react/jsx-uses-react": "error",
       "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }],
-      "react/jsx-uses-vars": "error",
+      "react/jsx-uses-vars": "warn",
       "prettier/prettier": [
          "error",
          {
@@ -30,10 +33,17 @@
             "trailingComma": "es5",
             "tabWidth": 3,
             "semi": false,
-            "endOfLine": "auto"
+            "endOfLine": "auto",
+            "arrowParens": "always"
          }
       ],
       "func-names": "off",
-      "no-undef": "off"
+      "no-undef": "off",
+      "react/function-component-definition": [0],
+      "react/require-default-props": [0],
+      "no-unused-vars": "warn",
+      "react/jsx-props-no-spreading": [0],
+      "react/forbid-prop-types": [0],
+      "no-nested-ternary": "off"
    }
 }
