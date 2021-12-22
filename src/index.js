@@ -1,18 +1,24 @@
-import React from 'react'
+// import React from 'react'
+import 'simplebar/dist/simplebar.css'
 import ReactDOM from 'react-dom'
 import './index.css'
 import { BrowserRouter as Router } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
-   <React.StrictMode>
+   <HelmetProvider>
       <Router>
          <App />
       </Router>
-   </React.StrictMode>,
+   </HelmetProvider>,
    document.getElementById('root')
 )
+
+// If you want to enable client cache, register instead.
+serviceWorker.unregister()
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
