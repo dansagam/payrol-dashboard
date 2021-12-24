@@ -48,6 +48,7 @@
       "no-shadow": [
          0,
          { "builtinGlobals": false, "hoist": "functions", "allow": [] }
-      ]
+      ],
+      "no-underscore-dangle": [0, { "allow": ["foo_", "_bar"] }]
    }
 }
