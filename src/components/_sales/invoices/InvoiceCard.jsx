@@ -16,32 +16,32 @@ const InvoiceCard = ({ invoice }) => {
             alignItem="center"
             justifyContent="space-between"
          >
-            <Link
-               to="#"
-               color="inherit"
-               underline="hover"
-               component={RouterLink}
-            >
-               <Box component="div">
-                  <Typography component="p" variant="h2">
-                     {customerName}
-                  </Typography>
+            <Box component="div">
+               <Typography component="p" variant="h2">
+                  {customerName}
+               </Typography>
+               <Link
+                  to="#"
+                  color="inherit"
+                  underline="hover"
+                  component={RouterLink}
+               >
                   <Typography component="h2" variant="body2">
                      {invoiceRef}
                   </Typography>
-               </Box>
-               <Box component="div">
-                  <Typography component="p" variant="h2">
-                     <Typography component="span" variant="h2">
-                        $
-                     </Typography>
-                     {invoiceAmount}
+               </Link>
+            </Box>
+            <Box component="div">
+               <Typography component="p" variant="h2">
+                  <Typography component="span" variant="h2">
+                     $
                   </Typography>
-                  <Typography component="h2" variant="body2">
-                     {dueStatus}
-                  </Typography>
-               </Box>
-            </Link>
+                  {invoiceAmount}
+               </Typography>
+               <Typography component="h2" variant="body2">
+                  {dueStatus}
+               </Typography>
+            </Box>
          </Stack>
       </Card>
    )
