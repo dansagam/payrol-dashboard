@@ -49,16 +49,16 @@
          0,
          { "builtinGlobals": false, "hoist": "functions", "allow": [] }
       ],
-      "no-underscore-dangle": [0, { "allow": ["foo_", "_bar"] }],
-      "rules": {
-         "jsx-a11y/anchor-is-valid": [
-            "error",
-            {
-               "components": ["Link"],
-               "specialLink": ["hrefLeft", "hrefRight"],
-               "aspects": ["noHref", "invalidHref", "preferButton"]
-            }
-         ]
-      }
+      "no-underscore-dangle": [0, { "allow": ["foo_", "_bar"] }]
+      // "rules": {
+      //    "jsx-a11y/anchor-is-valid": [
+      //       0,
+      //       {
+      //          "components": ["Link"],
+      //          "specialLink": ["hrefLeft", "hrefRight"],
+      //          "aspects": ["noHref", "invalidHref", "preferButton"]
+      //       }
+      //    ]
+      // }
    }
 }

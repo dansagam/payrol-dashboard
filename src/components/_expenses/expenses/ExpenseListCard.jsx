@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types'
 import { Link as RouterLink } from 'react-router-dom'
 import Box from '@mui/material/Box'
@@ -17,7 +18,7 @@ const ExpenseListCard = ({ expense }) => {
          >
             <Box component="div">
                <Typography component="p" variant="h2">
-                  {'customerName'}
+                  customerName
                </Typography>
                <Link
                   to="#"
@@ -38,7 +39,7 @@ const ExpenseListCard = ({ expense }) => {
                   {expenseAmount}
                </Typography>
                <Typography component="h2" variant="body2">
-                  {'dueStatus'}
+                  dueStatus
                </Typography>
             </Box>
          </Stack>
