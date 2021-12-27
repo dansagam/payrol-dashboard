@@ -19,7 +19,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 
 const TaskItem = (props) => {
    const { task, checked, formik, ...other } = props
-   const { getFieldProps } = formik
+   const { getFieldProps, handleChange } = formik
 
    return (
       <Stack>
@@ -29,6 +29,7 @@ const TaskItem = (props) => {
                   {...getFieldProps('checked')}
                   value={task}
                   checked={checked}
+                  onChange={handleChange}
                   {...other}
                />
             }
@@ -41,7 +42,9 @@ const TaskItem = (props) => {
                         textDecoration: 'line-through',
                      }),
                   }}
-               />
+               >
+                  {task}
+               </Typography>
             }
          />
       </Stack>
@@ -57,18 +60,19 @@ const AppTasks = (props) => {
    const { TASKS } = props
    const formik = useFormik({
       initialValues: {
-         checked: true,
+         checked: [TASKS[1]],
       },
       onSubmit: (values) => {
          console.log(values)
       },
    })
    const { values, handleSubmit } = formik
+   console.log(values)
    return (
       <Card>
-         <CardHeader />
-         <Box>
-            <FormikProvider>
+         <CardHeader title="Tasks" />
+         <Box sx={{ px: 3, py: 1 }}>
+            <FormikProvider value={formik}>
                <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
                   {TASKS.map((task) => (
                      <TaskItem

@@ -2,8 +2,8 @@ import * as React from 'react'
 import { Outlet } from 'react-router-dom'
 // material
 import { styled } from '@mui/material/styles'
-import DashboardNavbar from './DashboardNavbar'
-import DashboardSidebar from './DashboardSidebar'
+import GenNavbar from './GenNavbar'
+import GenSidebar from './GenSidebar'
 import account from '../../../_mocks_/account'
 
 const APP_BAR_MOBILE = 64
@@ -26,12 +26,13 @@ const MainStyles = styled('div')(({ theme }) => ({
       paddingRight: theme.spacing(2),
    },
 }))
-const DashboardLayout = () => {
+
+const DefaultLayout = () => {
    const [open, setOpen] = React.useState(false)
    return (
       <RootStyles>
-         <DashboardNavbar onOpenSidebar={() => setOpen(true)} />
-         <DashboardSidebar
+         <GenNavbar onOpenSidebar={() => setOpen(true)} />
+         <GenSidebar
             account={account}
             onCloseSidebar={() => setOpen(false)}
             isOpenSidebar={open}
@@ -42,5 +43,4 @@ const DashboardLayout = () => {
       </RootStyles>
    )
 }
-
-export default DashboardLayout
+export default DefaultLayout

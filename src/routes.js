@@ -1,14 +1,20 @@
 import { useRoutes, Navigate } from 'react-router-dom'
+// views layout
+import DashboardLayout from './views/Layouts/Dashboard'
+// import LogoOnlyLayout from './views/Layouts/LogoOnlyLayout'
+import DefaultLayout from './views/Layouts/GenLayout'
+// view screen
+import DashboardApp from './views/Screens/Dashboard/DashboardApp'
 
-const routes = () =>
+const Routes = () =>
    useRoutes([
       {
          path: '/dashboard',
-         element: '<DashboardView />',
+         element: <DashboardLayout />,
          children: [
-            { element: <Navigate to="/dashboard/app" replace /> },
-            { path: 'app', element: 'DashboardApp' },
-            { path: 'user', element: '<User />' },
+            { element: <Navigate to="/dashboard/app" /> },
+            { path: 'app', element: <DashboardApp /> },
+            { path: 'users', element: '<User />' },
             { path: 'products', element: '<Products />' },
          ],
       },
@@ -66,16 +72,16 @@ const routes = () =>
       },
       {
          path: '/',
-         element: '<LogoOnlyLayout />',
+         element: <DefaultLayout />,
          children: [
             { path: 'login', element: '<Login />' },
             { path: 'register', element: '<Register />' },
             { path: '404', element: '<NotFound />' },
-            { path: '/', element: <Navigate to="/dashboard" replace /> },
+            { path: '/', element: <Navigate to="/dashboard" /> },
             { path: '*', element: <Navigate to="/404" replace /> },
          ],
       },
       { path: '*', element: <Navigate to="/404" replace /> },
    ])
 
-export default routes
+export default Routes

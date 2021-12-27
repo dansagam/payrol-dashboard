@@ -19,6 +19,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "date-fns": "^2.27.0",
+    "faker": "^5.5.3",
     "formik": "^2.2.9",
     "history": "^5.1.0",
     "lodash": "^4.17.21",

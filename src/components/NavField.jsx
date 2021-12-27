@@ -89,9 +89,9 @@ const NavItem = (props) => {
                />
             </ListItemStyle>
             <Collapse in={open} timeout="auto" unmountOnExit>
-               <List component="div" disablePadding>
+               <List component="div" disablePadding sx={{ ml: 2 }}>
                   {children.map((item) => {
-                     const { title, path } = item
+                     const { title, path, icon } = item
                      const isActiveSub = active(path)
                      return (
                         <ListItemStyle
@@ -120,7 +120,9 @@ const NavItem = (props) => {
                                        bgcolor: 'primary.main',
                                     }),
                                  }}
-                              />
+                              >
+                                 {icon}
+                              </Box>
                            </ListItemIconStyle>
                            <ListItemText disableTypography primary={title} />
                         </ListItemStyle>
