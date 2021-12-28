@@ -121,7 +121,7 @@ const GenSidebar = ({ isOpenSidebar, onCloseSidebar, account }) => {
    )
    return (
       <RootStyle>
-         <Paper sx={{ xs: 'block', lg: 'none' }}>
+         <Paper sx={{ display: { xs: 'block', lg: 'none' } }}>
             <Drawer
                open={isOpenSidebar}
                onClose={onCloseSidebar}
@@ -130,7 +130,7 @@ const GenSidebar = ({ isOpenSidebar, onCloseSidebar, account }) => {
                {renderContent}
             </Drawer>
          </Paper>
-         <Paper sx={{ xs: 'none', lg: 'block' }}>
+         <Paper sx={{ display: { xs: 'none', lg: 'block' } }}>
             <Drawer
                open
                variant="persistent"

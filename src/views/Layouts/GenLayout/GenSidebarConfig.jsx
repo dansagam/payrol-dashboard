@@ -20,24 +20,24 @@ const GenSidebarConfig = [
       children: [
          {
             title: 'dashboard',
-            path: 'app',
+            path: 'dashboard/app',
             icon: getIcon(faChartPie),
          },
          {
             title: 'users',
-            path: 'users',
+            path: '/dashboard/users',
             icon: getIcon(faUser),
          },
          {
             title: 'products',
-            path: 'products',
+            path: '/dashboard/products',
             icon: getIcon(faShoppingBag),
          },
       ],
    },
    {
       title: 'accounts',
-      path: 'users',
+      path: '/accounts/lists',
       icon: getIcon(faUsers),
    },
    {
@@ -47,27 +47,27 @@ const GenSidebarConfig = [
       children: [
          {
             title: 'Overview',
-            path: 'overview',
+            path: '/sales/overview',
             icon: getIcon(faPiggyBank),
          },
-         {
-            title: 'subscriptions',
-            path: 'subscriptions',
-            icon: getIcon(faPiggyBank),
-         },
+         // {
+         //    title: 'subscriptions',
+         //    path: '/sales/subscriptions',
+         //    icon: getIcon(faPiggyBank),
+         // },
          {
             title: 'invoices',
-            path: 'invoices',
+            path: '/sales/invoices',
             icon: getIcon(faPiggyBank),
          },
          {
             title: 'customers',
-            path: 'customers',
+            path: '/sales/customers',
             icon: getIcon(faPiggyBank),
          },
          {
             title: 'deposits',
-            path: 'deposits',
+            path: '/sales/deposits',
             icon: getIcon(faPiggyBank),
          },
       ],
@@ -79,19 +79,19 @@ const GenSidebarConfig = [
       children: [
          {
             title: 'categories',
-            path: 'invoices',
+            path: '/expenses/categories',
             icon: getIcon(faPiggyBank),
          },
          {
             title: 'expenses',
-            path: 'expenses',
+            path: '/expenses/lists',
             icon: getIcon(faPiggyBank),
          },
       ],
    },
    {
       title: 'reports',
-      path: '/register',
+      path: '/reports',
       icon: getIcon(faUserPlus),
    },
    {
