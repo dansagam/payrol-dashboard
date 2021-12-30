@@ -12,11 +12,33 @@ import PropTypes from 'prop-types'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
+import { styled, alpha } from '@mui/material/styles'
 import LanguagePopover from './LanguagePopover'
 import AccountPopover from './AccountPopover'
 import account from '../../../_mocks_/account'
 import NotificationPopove from './NotificationPopove'
+import Searchbar from './Searchbar'
 
+const DRAWER_WIDTH = 280
+const APPBAR_MOBILE = 64
+const APPBAR_DESKTOP = 92
+
+const RootStyles = styled(AppBar)(({ theme }) => ({
+   boxShadow: 'none',
+   backdropFilter: 'blur(60px)',
+   WebkitBackdropFilter: 'blur(60px)',
+   backgroundColor: alpha(theme.palette.background.default, 0.27),
+   [theme.breakpoints.up('lg')]: {
+      width: `calc(100% - ${DRAWER_WIDTH + 1}px)`,
+   },
+}))
+const ToolbarStyles = styled(Toolbar)(({ theme }) => ({
+   minHeight: APPBAR_MOBILE,
+   [theme.breakpoints.up('lg')]: {
+      minHeight: APPBAR_DESKTOP,
+      padding: theme.spacing(0, 5),
+   },
+}))
 const GenNavbar = ({ onOpenSidebar }) => {
    const mobileMenuId = 'toggle-menu-id'
    const [anchorEl, setAnchorEl] = React.useState(null)
@@ -55,8 +77,8 @@ const GenNavbar = ({ onOpenSidebar }) => {
       </Menu>
    )
    return (
-      <AppBar>
-         <Toolbar>
+      <RootStyles>
+         <ToolbarStyles>
             <Paper sx={{ display: { xs: 'block', lg: 'none' } }}>
                <IconButton
                   onClick={onOpenSidebar}
@@ -65,10 +87,14 @@ const GenNavbar = ({ onOpenSidebar }) => {
                   <FontAwesomeIcon icon={faBars} />
                </IconButton>
             </Paper>
-            <Paper sx={{ display: { xs: 'none', sm: 'block' } }}>
-               Searchbar
+            <Paper
+               sx={{
+                  display: { color: 'text.primary' },
+               }}
+            >
+               <Searchbar />
             </Paper>
-            <div>dhdjsd</div>
+            {/* <div style={{ color: 'ButtonText' }}>dhdjsd</div> */}
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                <Stack
@@ -90,12 +116,12 @@ const GenNavbar = ({ onOpenSidebar }) => {
                   aria-haspopup="true"
                   onClick={handleMenuOpen}
                >
-                  <MoreIcon />
+                  <MoreIcon sx={{ color: 'text.primary' }} />
                </IconButton>
             </Box>
-         </Toolbar>
+         </ToolbarStyles>
          {renderMenu}
-      </AppBar>
+      </RootStyles>
    )
 }
 GenNavbar.propTypes = {

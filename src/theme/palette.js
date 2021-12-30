@@ -27,50 +27,50 @@ const GREY = {
 }
 
 const PRIMARY = {
-   lighter: '#C8FACD',
-   light: '#5BE584',
-   main: '#00AB55',
-   dark: '#007B55',
-   darker: '#005249',
+   lighter: '#C8FACD', // '#c0e0fa'
+   light: '#5BE584', // '#E3F2FD'
+   main: '#00AB55', // '#90CAF9'
+   dark: '#007B55', // '#42A5F5'
+   darker: '#005249', // #0c90fa
    contrastText: '#fff',
 }
 const SECONDARY = {
    lighter: '#D6E4FF',
-   light: '#84A9FF',
-   main: '#3366FF',
-   dark: '#1939B7',
-   darker: '#091A7A',
+   light: '#84A9FF', // '#F3E5F5'
+   main: '#3366FF', // '#CE93D8'
+   dark: '#1939B7', // '#AB47BC'
+   darker: '#091A7A', // #7f218f
    contrastText: '#fff',
 }
 const INFO = {
    lighter: '#D0F2FF',
-   light: '#74CAFF',
-   main: '#1890FF',
-   dark: '#0C53B7',
+   light: '#74CAFF', // '#4FC3F7'
+   main: '#1890FF', // '#29B6F6'
+   dark: '#0C53B7', // '#0288D1'
    darker: '#04297A',
    contrastText: '#fff',
 }
 const SUCCESS = {
    lighter: '#E9FCD4',
-   light: '#AAF27F',
-   main: '#54D62C',
-   dark: '#229A16',
+   light: '#AAF27F', // '#81C784'
+   main: '#54D62C', // '#66BB6A'
+   dark: '#229A16', // '#388E3C'
    darker: '#08660D',
    contrastText: GREY[800],
 }
 const WARNING = {
    lighter: '#FFF7CD',
-   light: '#FFE16A',
-   main: '#FFC107',
-   dark: '#B78103',
+   light: '#FFE16A', // '#FFB74D'
+   main: '#FFC107', // '#FFA726'
+   dark: '#B78103', // '#F57C00'
    darker: '#7A4F01',
    contrastText: GREY[800],
 }
 const ERROR = {
    lighter: '#FFE7D9',
-   light: '#FFA48D',
-   main: '#FF4842',
-   dark: '#B72136',
+   light: '#FFA48D', // '#E57373'
+   main: '#FF4842', // '#F44336'
+   dark: '#B72136', // '#D32F2F'
    darker: '#7A0C2E',
    contrastText: '#fff',
 }

@@ -1,10 +1,12 @@
 import * as React from 'react'
 // material
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLanguage } from '@fortawesome/free-solid-svg-icons'
 import { alpha } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import MenuItem from '@mui/material/MenuItem'
 import IconButton from '@mui/material/IconButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
+// import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 // components
 import MenuPopover from '../../../components/MenuPopover'
@@ -55,7 +57,14 @@ const LanguagePopover = () => {
                }),
             }}
          >
-            <img src={LANGS[0].icon} alt={LANGS[0].label} />
+            {/* <img src={LANGS[0].icon} alt={LANGS[0].label} /> */}
+            <Box
+               component={FontAwesomeIcon}
+               icon={faLanguage}
+               height={30}
+               width={30}
+               sx={{ color: 'primary.dark' }}
+            />
          </IconButton>
          <MenuPopover
             open={open}
@@ -70,13 +79,13 @@ const LanguagePopover = () => {
                      onClick={handleClose}
                      sx={{ py: 1, px: 2.5 }}
                   >
-                     <ListItemIcon>
+                     {/* <ListItemIcon>
                         <Box
                            component="img"
                            alt={option.label}
                            src={option.icon}
                         />
-                     </ListItemIcon>
+                     </ListItemIcon> */}
                      <ListItemText
                         primaryTypographyProps={{ variant: 'body2' }}
                      >

@@ -1,8 +1,12 @@
 import { useRoutes, Navigate } from 'react-router-dom'
 // views layout
-import DashboardLayout from './views/Layouts/Dashboard'
-// import LogoOnlyLayout from './views/Layouts/LogoOnlyLayout'
 import DefaultLayout from './views/Layouts/GenLayout'
+import DashboardLayout from './views/Layouts/Dashboard'
+import ExpensesViews from './views/Layouts/Expenses'
+import SalesView from './views/Layouts/Sales'
+import ReportView from './views/Layouts/Report'
+import AccountView from './views/Layouts/Accounts'
+// import LogoOnlyLayout from './views/Layouts/LogoOnlyLayout'
 // view screen
 import DashboardApp from './views/Screens/Dashboard/DashboardApp'
 
@@ -25,7 +29,7 @@ const Routes = () =>
             },
             {
                path: 'accounts',
-               element: '<AccountView />',
+               element: <AccountView />,
                children: [
                   { element: <Navigate to="/accounts/lists" replace /> },
                   {
@@ -42,7 +46,7 @@ const Routes = () =>
             },
             {
                path: 'sales',
-               element: '<Sales />',
+               element: <SalesView />,
                children: [
                   {
                      index: true,
@@ -69,7 +73,7 @@ const Routes = () =>
             },
             {
                path: 'expenses',
-               element: '<ExpensesLayouts />',
+               element: <ExpensesViews />,
                children: [
                   {
                      index: true,
@@ -85,8 +89,7 @@ const Routes = () =>
             },
             {
                path: 'reports',
-               element: '<ReportLayouts />',
-               children: [],
+               element: <ReportView />,
             },
             { path: 'login', element: '<Login />' },
             { path: 'register', element: '<Register />' },

@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles'
 import GenNavbar from './GenNavbar'
 import GenSidebar from './GenSidebar'
 import account from '../../../_mocks_/account'
+import FixedScrollPlugin from '../../../components/FixedScrollPlugin'
 
 const APP_BAR_MOBILE = 64
 const APP_BAR_DESKTOP = 92
@@ -40,6 +41,7 @@ const DefaultLayout = () => {
          <MainStyles>
             <Outlet />
          </MainStyles>
+         <FixedScrollPlugin />
       </RootStyles>
    )
 }

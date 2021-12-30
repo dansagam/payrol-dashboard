@@ -1,7 +1,9 @@
-// import * as React from 'react'
 import { Outlet } from 'react-router-dom'
-// material
-import { styled } from '@mui/material/styles'
+// components
+import subNavConfig from './DashboardSubNavbar'
+import SubNavSection from '../../../components/SubNavSection'
+import Scrollbar from '../../../components/Scrollbar'
+import MainComponent from '../../../components/MainComponent'
 // import DashboardNavbar from './DashboardNavbar'
 // import DashboardSidebar from './DashboardSidebar'
 // import account from '../../../_mocks_/account'
@@ -14,23 +16,23 @@ import { styled } from '@mui/material/styles'
 //    minHeight: '100%',
 //    overflow: 'hidden',
 // })
-const MainStyles = styled('div')(({ theme }) => ({
-   flexGrow: 1,
-   overflow: 'auto',
-   minHeight: '100%',
-   paddingTop: 24,
-   paddingBottom: theme.spacing(10),
-   [theme.breakpoints.up('lg')]: {
-      paddingTop: 24,
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
-   },
-}))
 const DashboardLayout = () => (
    // const [open, setOpen] = React.useState(false)
-   <MainStyles>
-      <Outlet />
-   </MainStyles>
+   <MainComponent>
+      <SubNavSection subNavConfig={subNavConfig} />
+      <Scrollbar
+         sx={{
+            height: '100%',
+            '& .simplebar-content': {
+               height: '100%',
+               display: 'flex',
+               flexDirection: 'column',
+            },
+         }}
+      >
+         <Outlet />
+      </Scrollbar>
+   </MainComponent>
    // <RootStyles>
    //    <DashboardNavbar onOpenSidebar={() => setOpen(true)} />
    //    <DashboardSidebar
