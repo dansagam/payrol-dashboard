@@ -61,7 +61,7 @@ const RootStyle = styled('span')(({ theme, ownerState }) => {
 const Label = (props) => {
    const { children, color = 'default', variant = 'ghost', ...other } = props
    return (
-      <RootStyle onwerState={{ color, variant }} {...other}>
+      <RootStyle ownerState={{ color, variant }} {...other}>
          {children}
       </RootStyle>
    )

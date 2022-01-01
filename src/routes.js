@@ -9,6 +9,8 @@ import AccountView from './views/Layouts/Accounts'
 // import LogoOnlyLayout from './views/Layouts/LogoOnlyLayout'
 // view screen
 import DashboardApp from './views/Screens/Dashboard/DashboardApp'
+import Expenses from './views/Screens/Expenses/Expenses'
+import Products from './views/Screens/Dashboard/Products'
 
 const Routes = () =>
    useRoutes([
@@ -24,7 +26,7 @@ const Routes = () =>
                   { index: true, element: <Navigate to="/dashboard/app" /> },
                   { path: 'app', element: <DashboardApp /> },
                   { path: 'users', element: '<User />' },
-                  { path: 'products', element: '<Products />' },
+                  { path: 'products', element: <Products /> },
                ],
             },
             {
@@ -81,7 +83,7 @@ const Routes = () =>
                   },
                   {
                      path: 'lists',
-                     element: '<Expenses />',
+                     element: <Expenses />,
                      children: [{ path: ':expense', element: '<Expense />' }],
                   },
                   { path: 'categories', element: '<ExpenseCategories />' },
