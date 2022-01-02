@@ -10,7 +10,7 @@ import Link from '@mui/material/Link'
 const InvoiceCard = ({ invoice }) => {
    const { customerName, invoiceRef, invoiceAmount, dueStatus } = invoice
    return (
-      <Card sx={{ width: { xs: '50%', md: 200 }, p: 2 }}>
+      <Card sx={{ width: { xs: '100%', sm: '25%' }, p: 2 }}>
          <Stack
             direction="row"
             alignItems="center"
@@ -42,7 +42,7 @@ const InvoiceCard = ({ invoice }) => {
                   sx={{ color: 'primary.darker' }}
                >
                   <Typography component="span" variant="body2">
-                     $
+                     ₦&nbsp;
                   </Typography>
                   {invoiceAmount}
                </Typography>

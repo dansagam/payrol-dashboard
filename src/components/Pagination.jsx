@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import PropTypes from 'prop-types'
 // import Box from '@mui/material/Box'
 import Pagination from '@mui/material/Pagination'
@@ -7,32 +7,32 @@ import PaginationItem from '@mui/material/PaginationItem'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
-const PaginationContainer = ({ pages }) => {
-   const [page, setPage] = React.useState(1)
-   const handleChange = (e, value) => {
-      setPage(value)
-   }
-   return (
-      pages > 1 && (
-         <Pagination
-            count={pages}
-            renderItem={(item) => (
-               <PaginationItem
-                  components={{
-                     previous: ArrowBackIcon,
-                     next: ArrowForwardIcon,
-                  }}
-                  {...item}
-               />
-            )}
-            page={page}
-            onChange={handleChange}
-         />
-      )
+const PaginationContainer = ({ pages, page, handlePageChange }) =>
+   // const [vpage, setPage] = React.useState(page)
+   // const handleChange = (e, value) => {
+   //    setPage(value)
+   // }
+   pages > 1 && (
+      <Pagination
+         count={pages}
+         renderItem={(item) => (
+            <PaginationItem
+               components={{
+                  previous: ArrowBackIcon,
+                  next: ArrowForwardIcon,
+               }}
+               {...item}
+            />
+         )}
+         page={page}
+         onChange={handlePageChange}
+      />
    )
-}
+
 PaginationContainer.propTypes = {
    pages: PropTypes.number,
+   page: PropTypes.number,
+   handlePageChange: PropTypes.func,
 }
 
 export default PaginationContainer

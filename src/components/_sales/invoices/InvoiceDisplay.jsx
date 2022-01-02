@@ -21,7 +21,15 @@ const overdueAmount = fNumber(overduewtout)
 // console.log(dueSoonAmount)
 const fraction = dueSoonwtout / (dueSoonwtout + overduewtout)
 const InvoiceDisplay = () => (
-   <Box component="div" sx={{ flex: 1, display: 'flex', width: '100%' }}>
+   <Box
+      component="div"
+      sx={{
+         flex: 1,
+         display: 'flex',
+         width: '100%',
+         backgroundColor: (theme) => theme.palette.info.lighter,
+      }}
+   >
       <InvoiceDueSoon
          dueSoonAmount={dueSoonAmount}
          dueSoonFraction={fraction}

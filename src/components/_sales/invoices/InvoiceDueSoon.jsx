@@ -29,7 +29,7 @@ const InvoiceDueSoon = (props) => {
    return (
       <RootStyle {...other} sx={{ width: `${dueSoonFraction * 100}%` }}>
          <Typography variant="body2">
-            Due Soon: {`$${dueSoonAmount}`}
+            Due Soon: {`₦ ${dueSoonAmount}`}
          </Typography>
          <ProSpan />
       </RootStyle>

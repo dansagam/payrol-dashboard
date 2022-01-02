@@ -12,6 +12,7 @@ import DashboardApp from './views/Screens/Dashboard/DashboardApp'
 import Expenses from './views/Screens/Expenses/Expenses'
 import Products from './views/Screens/Dashboard/Products'
 import Invoices from './views/Screens/Sales/Invoices'
+import Customers from './views/Screens/Sales/Customers'
 
 const Routes = () =>
    useRoutes([
@@ -66,7 +67,7 @@ const Routes = () =>
                   },
                   {
                      path: 'customers',
-                     element: '<CustomerSales />',
+                     element: <Customers />,
                   },
                   {
                      path: 'deposits',

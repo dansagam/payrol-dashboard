@@ -22,7 +22,7 @@ const CustomerListHeader = (props) => {
    return (
       <TableHead>
          <TableRow>
-            <TableCell>
+            <TableCell padding="checkbox">
                <Checkbox
                   indeterminate={numSelected > 0 && numSelected < rowCount}
                   checked={rowCount > 0 && numSelected === rowCount}

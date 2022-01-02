@@ -29,7 +29,7 @@ const InvoiceOverdue = (props) => {
    return (
       <RootStyle {...other} sx={{ width: `${overdueFraction * 100}%` }}>
          <Typography variant="subtitle2">
-            Overdue: {`$${overdueAmount}`}
+            Overdue: {`₦ ${overdueAmount}`}
          </Typography>
          <ProSpan />
       </RootStyle>
