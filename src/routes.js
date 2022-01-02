@@ -11,6 +11,7 @@ import AccountView from './views/Layouts/Accounts'
 import DashboardApp from './views/Screens/Dashboard/DashboardApp'
 import Expenses from './views/Screens/Expenses/Expenses'
 import Products from './views/Screens/Dashboard/Products'
+import Invoices from './views/Screens/Sales/Invoices'
 
 const Routes = () =>
    useRoutes([
@@ -56,7 +57,7 @@ const Routes = () =>
                   },
                   {
                      path: 'invoices',
-                     element: '<Invoices />',
+                     element: <Invoices />,
                      children: [{ path: ':invoice', element: '<Invoice />' }],
                   },
                   {

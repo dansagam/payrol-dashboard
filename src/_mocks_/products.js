@@ -44,7 +44,7 @@ const PRODUCT_COLOR = [
 
 // ----------------------------------------------------------------------
 
-const products = [...Array(24)].map((_, index) => {
+const products = [...Array(24).keys()].map((_, index) => {
    const setIndex = index + 1
 
    return {

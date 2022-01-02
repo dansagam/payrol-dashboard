@@ -58,7 +58,7 @@ const Searchbar = () => {
       }
    })
    return (
-      <ClickAwayListener>
+      <ClickAwayListener onClickAway={handleClose}>
          <div>
             <IconButton onClick={handleOpen}>
                <Box
@@ -76,7 +76,7 @@ const Searchbar = () => {
                      disableUnderline
                      placeholder="search or press Esc to exit"
                      startAdornment={
-                        <InputAdornment>
+                        <InputAdornment position="start">
                            <Box
                               component={FontAwesomeIcon}
                               icon={faSearch}

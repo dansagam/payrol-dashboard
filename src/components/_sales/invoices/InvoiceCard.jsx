@@ -10,14 +10,18 @@ import Link from '@mui/material/Link'
 const InvoiceCard = ({ invoice }) => {
    const { customerName, invoiceRef, invoiceAmount, dueStatus } = invoice
    return (
-      <Card>
+      <Card sx={{ width: { xs: '50%', md: 200 }, p: 2 }}>
          <Stack
             direction="row"
-            alignItem="center"
+            alignItems="center"
             justifyContent="space-between"
          >
             <Box component="div">
-               <Typography component="p" variant="h2">
+               <Typography
+                  component="p"
+                  variant="h6"
+                  sx={{ fontSize: '0.8rem' }}
+               >
                   {customerName}
                </Typography>
                <Link
@@ -32,8 +36,12 @@ const InvoiceCard = ({ invoice }) => {
                </Link>
             </Box>
             <Box component="div">
-               <Typography component="p" variant="h2">
-                  <Typography component="span" variant="h2">
+               <Typography
+                  component="p"
+                  variant="body2"
+                  sx={{ color: 'primary.darker' }}
+               >
+                  <Typography component="span" variant="body2">
                      $
                   </Typography>
                   {invoiceAmount}

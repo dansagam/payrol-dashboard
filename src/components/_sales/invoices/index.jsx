@@ -1,3 +1,4 @@
+export { default as InvoiceCard } from './InvoiceCard'
 export { default as InvoiceDisplay } from './InvoiceDisplay'
 export { default as InvoiceItem } from './InvoiceItem'
 export { default as InvoiceDueSoon } from './InvoiceDueSoon'

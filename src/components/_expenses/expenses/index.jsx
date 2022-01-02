@@ -1,3 +1,5 @@
 export { default as ExpenseDisplay } from './ExpenseDisplay'
 export { default as ExpenseOverall } from './ExpenseOverall'
 export { default as ExpenseList } from './ExpenseList'
+export { default as IncomeOverall } from './IncomeOverall'
+export { default as ExpenseListCard } from './ExpenseListCard'

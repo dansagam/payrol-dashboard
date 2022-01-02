@@ -149,7 +149,7 @@ const SubNavSection = ({ subNavConfig, ...other }) => {
                >
                   {subNavConfig.map((navConfig) => (
                      <NavItem
-                        key={navConfig.label}
+                        key={navConfig.title}
                         navConfig={navConfig}
                         active={match}
                      />
