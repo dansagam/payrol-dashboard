@@ -12,7 +12,6 @@ import TableContainer from '@mui/material/TableContainer'
 import TableBody from '@mui/material/TableBody'
 import TablePagination from '@mui/material/TablePagination'
 import {
-   CustomerList,
    CustomerListHeader,
    CustomerListToolbar,
    CustomerListBody,
@@ -22,45 +21,45 @@ import Scrollbar from '../../../components/Scrollbar'
 import customers from '../../../_mocks_/customers'
 
 const TABLE_HEAD = [
-   { id: 'name', label: 'Name', alignRight: false },
-   { id: 'address', label: 'Address', alignRight: false },
-   { id: 'phonenumber', label: 'Phone Number', alignRight: false },
-   { id: 'activeStatus', label: 'Status', alignRight: false },
-   { id: 'city', label: 'City', alignRight: false },
-   { id: 'state', label: 'State', alignRight: false },
-   { id: '' },
+   { _id: 'name', label: 'Name', alignRight: false },
+   { _id: 'address', label: 'Address', alignRight: false },
+   { _id: 'phonenumber', label: 'Phone Number', alignRight: false },
+   { _id: 'activeStatus', label: 'Status', alignRight: false },
+   { _id: 'city', label: 'City', alignRight: false },
+   { _id: 'state', label: 'State', alignRight: false },
+   { _id: '' },
 ]
-function descendingComparator(a, b, orderBy) {
-   if (b[orderBy] < a[orderBy]) {
-      return -1
-   }
-   if (b[orderBy] > a[orderBy]) {
-      return 1
-   }
-   return 0
-}
+// function descendingComparator(a, b, orderBy) {
+//    if (b[orderBy] < a[orderBy]) {
+//       return -1
+//    }
+//    if (b[orderBy] > a[orderBy]) {
+//       return 1
+//    }
+//    return 0
+// }
 
-function getComparator(order, orderBy) {
-   return order === 'desc'
-      ? (a, b) => descendingComparator(a, b, orderBy)
-      : (a, b) => -descendingComparator(a, b, orderBy)
-}
+// function getComparator(order, orderBy) {
+//    return order === 'desc'
+//       ? (a, b) => descendingComparator(a, b, orderBy)
+//       : (a, b) => -descendingComparator(a, b, orderBy)
+// }
 
-function applySortFilter(array, comparator, query) {
-   const stabilizedThis = array.map((el, index) => [el, index])
-   stabilizedThis.sort((a, b) => {
-      const order = comparator(a[0], b[0])
-      if (order !== 0) return order
-      return a[1] - b[1]
-   })
-   if (query) {
-      return filter(
-         array,
-         (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
-      )
-   }
-   return stabilizedThis.map((el) => el[0])
-}
+// function applySortFilter(array, comparator, query) {
+//    const stabilizedThis = array.map((el, index) => [el, index])
+//    stabilizedThis.sort((a, b) => {
+//       const order = comparator(a[0], b[0])
+//       if (order !== 0) return order
+//       return a[1] - b[1]
+//    })
+//    if (query) {
+//       return filter(
+//          array,
+//          (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
+//       )
+//    }
+//    return stabilizedThis.map((el) => el[0])
+// }
 
 const Customers = () => {
    const navigate = useNavigate()
@@ -110,15 +109,24 @@ const Customers = () => {
             selected.slice(0, selectedIndex),
             selected.slice(selectedIndex + 1)
          )
+         // newSelected.concat(selected, name)
       }
       setSelected(newSelected)
    }
    return (
       <Page title="Customers">
          <Container>
-            <Stack>
-               <Typography>users</Typography>
+            <Stack
+               direction="row"
+               alignItems="center"
+               justifyContent="space-between"
+               mb={5}
+            >
+               <Typography variant="h4" gutterBottom>
+                  Customer List
+               </Typography>
                <Button
+                  variant="contained"
                   onClick={handleButtonClick}
                   startIcon={<FontAwesomeIcon icon={faPlus} />}
                >

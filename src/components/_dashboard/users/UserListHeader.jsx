@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import { visuallyHidden } from '@mui/utils'
-// materials
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
@@ -8,27 +7,27 @@ import Box from '@mui/material/Box'
 import Checkbox from '@mui/material/Checkbox'
 import TableSortLabel from '@mui/material/TableSortLabel'
 
-const CustomerListHeader = (props) => {
+const UserListHeader = (props) => {
    const {
-      headLabel,
-      onRequestSort,
       order,
       orderBy,
       rowCount,
+      headLabel,
       numSelected,
+      onRequestSort,
       onSelectAllClick,
    } = props
-   const createSortHandler = (property) => (e) => {
-      onRequestSort(e, property)
+   const createSortHandler = (property) => (event) => {
+      onRequestSort(event, property)
    }
    return (
       <TableHead>
          <TableRow>
-            <TableCell padding="checkbox">
+            <TableCell>
                <Checkbox
                   indeterminate={numSelected > 0 && numSelected < rowCount}
-                  checked={rowCount > 0 && numSelected === rowCount}
-                  onClick={onSelectAllClick}
+                  checked={numSelected > 0 && numSelected === rowCount}
+                  onChange={onSelectAllClick}
                />
             </TableCell>
             {headLabel.map((headCell) => (
@@ -36,12 +35,12 @@ const CustomerListHeader = (props) => {
                   key={headCell._id}
                   align={headCell.alignRight ? 'right' : 'left'}
                   sortDirection={orderBy === headCell._id ? order : false}
+                  onClick={() => createSortHandler(headCell._id)}
                >
                   <TableSortLabel
                      hideSortIcon
                      active={orderBy === headCell._id}
                      direction={orderBy === headCell._id ? order : 'asc'}
-                     onClick={createSortHandler(headCell._id)}
                   >
                      {headCell.label}
                      {orderBy === headCell._id ? (
@@ -58,7 +57,7 @@ const CustomerListHeader = (props) => {
       </TableHead>
    )
 }
-CustomerListHeader.propTypes = {
+UserListHeader.propTypes = {
    order: PropTypes.oneOf(['asc', 'desc']),
    orderBy: PropTypes.string,
    rowCount: PropTypes.number,
@@ -67,5 +66,4 @@ CustomerListHeader.propTypes = {
    onRequestSort: PropTypes.func,
    onSelectAllClick: PropTypes.func,
 }
-
-export default CustomerListHeader
+export default UserListHeader
