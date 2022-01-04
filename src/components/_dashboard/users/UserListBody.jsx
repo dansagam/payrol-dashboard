@@ -44,7 +44,7 @@ const UserListBody = (props) => {
                variant="ghost"
                color={(status === 'banned' && 'error') || 'success'}
             >
-               {sentenceCase(status)}
+               {status === 'active' ? 'A' : 'B'}
             </Label>
          </TableCell>
          <TableCell align="right">

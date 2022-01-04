@@ -13,6 +13,7 @@ import Expenses from './views/Screens/Expenses/Expenses'
 import Products from './views/Screens/Dashboard/Products'
 import Invoices from './views/Screens/Sales/Invoices'
 import Customers from './views/Screens/Sales/Customers'
+import Users from './views/Screens/Dashboard/Users'
 
 const Routes = () =>
    useRoutes([
@@ -27,7 +28,7 @@ const Routes = () =>
                children: [
                   { index: true, element: <Navigate to="/dashboard/app" /> },
                   { path: 'app', element: <DashboardApp /> },
-                  { path: 'users', element: '<User />' },
+                  { path: 'users', element: <Users /> },
                   { path: 'products', element: <Products /> },
                ],
             },

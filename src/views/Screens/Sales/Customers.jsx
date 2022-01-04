@@ -130,7 +130,7 @@ const Customers = () => {
                   onClick={handleButtonClick}
                   startIcon={<FontAwesomeIcon icon={faPlus} />}
                >
-                  New User
+                  New Customer
                </Button>
             </Stack>
             <Card>

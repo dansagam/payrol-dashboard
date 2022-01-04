@@ -9,12 +9,12 @@ const subNavConfig = [
       icon: getIcon(faCalendar),
    },
    {
-      title: 'user',
+      title: 'product',
       path: 'products',
       icon: getIcon(faCalendar),
    },
    {
-      title: 'product',
+      title: 'users',
       path: 'users',
       icon: getIcon(faCalendar),
    },

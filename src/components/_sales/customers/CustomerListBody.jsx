@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import TableRow from '@mui/material/TableRow'
 import Checkbox from '@mui/material/Checkbox'
 import TableCell from '@mui/material/TableCell'
-import Typography from '@mui/material/Typography'
+// import Typography from '@mui/material/Typography'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import Label from '../../Label'
@@ -28,14 +28,10 @@ const CustomerListBody = (props) => {
             />
          </TableCell>
          <TableCell component="th" scope="row" padding="none">
-            <Typography variant="body2">{name}</Typography>
+            {name}
          </TableCell>
-         <TableCell align="left">
-            <Typography variant="body2">{address}</Typography>
-         </TableCell>
-         <TableCell align="left">
-            <Typography variant="body2">{phoneNumber}</Typography>
-         </TableCell>
+         <TableCell align="left">{address}</TableCell>
+         <TableCell align="left">{phoneNumber}</TableCell>
          <TableCell align="left">{city}</TableCell>
          <TableCell align="left">{country}</TableCell>
          <TableCell align="left">
