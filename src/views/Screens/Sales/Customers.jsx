@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { filter } from 'lodash'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -11,6 +12,8 @@ import Table from '@mui/material/Table'
 import TableContainer from '@mui/material/TableContainer'
 import TableBody from '@mui/material/TableBody'
 import TablePagination from '@mui/material/TablePagination'
+import TableRow from '@mui/material/TableRow'
+import TableCell from '@mui/material/TableCell'
 import {
    CustomerListHeader,
    CustomerListToolbar,
@@ -29,43 +32,43 @@ const TABLE_HEAD = [
    { _id: 'state', label: 'State', alignRight: false },
    { _id: '' },
 ]
-// function descendingComparator(a, b, orderBy) {
-//    if (b[orderBy] < a[orderBy]) {
-//       return -1
-//    }
-//    if (b[orderBy] > a[orderBy]) {
-//       return 1
-//    }
-//    return 0
-// }
+const descendingComparator = (a, b, orderBy) => {
+   if (b[orderBy] < a[orderBy]) {
+      return -1
+   }
+   if (b[orderBy] > a[orderBy]) {
+      return 1
+   }
+   return 0
+}
 
-// function getComparator(order, orderBy) {
-//    return order === 'desc'
-//       ? (a, b) => descendingComparator(a, b, orderBy)
-//       : (a, b) => -descendingComparator(a, b, orderBy)
-// }
+const getComparator = (order, orderBy) =>
+   order === 'desc'
+      ? (a, b) => descendingComparator(a, b, orderBy)
+      : (a, b) => -descendingComparator(a, b, orderBy)
 
-// function applySortFilter(array, comparator, query) {
-//    const stabilizedThis = array.map((el, index) => [el, index])
-//    stabilizedThis.sort((a, b) => {
-//       const order = comparator(a[0], b[0])
-//       if (order !== 0) return order
-//       return a[1] - b[1]
-//    })
-//    if (query) {
-//       return filter(
-//          array,
-//          (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
-//       )
-//    }
-//    return stabilizedThis.map((el) => el[0])
-// }
+const applySortFilter = (array, comparator, query) => {
+   const stabilizedThis = array.map((el, index) => [el, index])
+   stabilizedThis.sort((a, b) => {
+      const order = comparator(a[0], b[0])
+      if (order !== 0) return order
+      return a[1] - b[1]
+   })
+   if (query) {
+      return filter(
+         array,
+         (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
+      )
+   }
+   return stabilizedThis.map((el) => el[0])
+}
 
 const Customers = () => {
    const navigate = useNavigate()
    const [selected, setSelected] = React.useState([])
    const [order, setOrder] = React.useState('asc')
    const [orderBy, setOrderBy] = React.useState('name')
+   const [filterName, setFilterName] = React.useState('')
    const [page, setPage] = React.useState(0)
    const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
@@ -113,6 +116,17 @@ const Customers = () => {
       }
       setSelected(newSelected)
    }
+   const handleFilterByName = (e) => {
+      setFilterName(e.target.value)
+   }
+   const emptyRows =
+      page > 0 ? Math.max(0, (1 + page) * rowsPerPage - customers.length) : 0
+   const filteredCustomers = applySortFilter(
+      customers,
+      getComparator(order, orderBy),
+      filterName
+   )
+   const isCustomerFound = filteredCustomers.length === 0
    return (
       <Page title="Customers">
          <Container>
@@ -134,7 +148,11 @@ const Customers = () => {
                </Button>
             </Stack>
             <Card>
-               <CustomerListToolbar numSelected={selected.length} />
+               <CustomerListToolbar
+                  numSelected={selected.length}
+                  filterName={filterName}
+                  onFilterName={handleFilterByName}
+               />
                <Scrollbar>
                   <TableContainer>
                      <Table>
@@ -148,7 +166,7 @@ const Customers = () => {
                            onSelectAllClick={handleSelectAllClick}
                         />
                         <TableBody>
-                           {customers
+                           {filteredCustomers
                               .slice(
                                  page * rowsPerPage,
                                  page * rowsPerPage + rowsPerPage
@@ -161,7 +179,25 @@ const Customers = () => {
                                     selected={selected}
                                  />
                               ))}
+                           {emptyRows > 0 && (
+                              <TableRow sx={{ height: 53 * emptyRows }}>
+                                 <TableCell colSpan={TABLE_HEAD.length} />
+                              </TableRow>
+                           )}
                         </TableBody>
+                        {isCustomerFound && (
+                           <TableBody>
+                              <TableRow>
+                                 <TableCell
+                                    align="center"
+                                    colSpan={TABLE_HEAD.length}
+                                    sx={{ py: 3 }}
+                                 >
+                                    SearchNotFOund
+                                 </TableCell>
+                              </TableRow>
+                           </TableBody>
+                        )}
                      </Table>
                   </TableContainer>
                </Scrollbar>

@@ -168,7 +168,10 @@ const Users = () => {
                </Button>
             </Stack>
             <Card>
-               <UserListToolbar />
+               <UserListToolbar
+                  filterName={filterName}
+                  onFilterName={handleFilterByName}
+               />
                <TableHeadCheckbox
                   headLabel={TABLE_HEAD}
                   selected={thSelected}
@@ -177,7 +180,7 @@ const Users = () => {
                />
                <Scrollbar>
                   <TableContainer sx={{ minWidth: 800 }}>
-                     <Table>
+                     <Table size="small" aria-label="a dense table">
                         <UserListHeader
                            order={order}
                            orderBy={orderBy}

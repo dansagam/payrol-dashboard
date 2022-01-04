@@ -20,7 +20,12 @@ const UserListMenu = () => {
    return (
       <>
          <IconButton ref={ref} onClick={() => setIsOpen(true)}>
-            <FontAwesomeIcon icon={faEllipsisV} width={20} height={20} />
+            <FontAwesomeIcon
+               icon={faEllipsisV}
+               style={{ fontSize: '1rem' }}
+               width={20}
+               height={20}
+            />
          </IconButton>
          <Menu
             open={isopen}

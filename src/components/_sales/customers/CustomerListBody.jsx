@@ -3,9 +3,10 @@ import TableRow from '@mui/material/TableRow'
 import Checkbox from '@mui/material/Checkbox'
 import TableCell from '@mui/material/TableCell'
 // import Typography from '@mui/material/Typography'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import Label from '../../Label'
+import CustomeerListMenu from './CustomeerListMenu'
 
 const CustomerListBody = (props) => {
    const { customer, handleClick, selected } = props
@@ -43,7 +44,7 @@ const CustomerListBody = (props) => {
             </Label>
          </TableCell>
          <TableCell align="left" sx={{ color: 'secondary.darker' }}>
-            <FontAwesomeIcon icon={faEdit} />
+            <CustomeerListMenu />
          </TableCell>
       </TableRow>
    )
