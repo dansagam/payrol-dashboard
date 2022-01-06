@@ -31,7 +31,7 @@ const PayrollMenu = () => {
                />
             }
          >
-            <Typography variant="h3">Add New Member</Typography>
+            <Typography variant="h3">Action</Typography>
          </Button>
          <Menu
             open={isOpen}
