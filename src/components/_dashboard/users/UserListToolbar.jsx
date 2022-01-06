@@ -20,12 +20,27 @@ const RootStyles = styled(Toolbar)(({ theme }) => ({
    padding: theme.spacing(0, 1, 0, 3),
 }))
 const SearchStyles = styled(OutlinedInput)(({ theme }) => ({
-   width: 240,
+   width: 50,
    transition: theme.transitions.create(['box-shadow', 'width'], {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.shorter,
    }),
-   '&.Mui-focused': { width: 320, boxShadow: theme.customShadows.z8 },
+   '& .MuiOutlinedInput-input': {
+      width: 0,
+   },
+   '&:hover': {
+      width: 240,
+      '& .MuiOutlinedInput-input': {
+         width: '100%',
+      },
+   },
+   '&.Mui-focused': {
+      width: 320,
+      boxShadow: theme.customShadows.z8,
+      '& .MuiOutlinedInput-input': {
+         width: '100%',
+      },
+   },
    '& fieldset': {
       borderWidth: `1px !important`,
       borderColor: `${theme.palette.grey[500_32]} !important`,

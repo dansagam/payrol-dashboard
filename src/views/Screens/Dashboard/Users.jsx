@@ -169,6 +169,7 @@ const Users = () => {
             </Stack>
             <Card>
                <UserListToolbar
+                  numSelected={selected.length}
                   filterName={filterName}
                   onFilterName={handleFilterByName}
                />
