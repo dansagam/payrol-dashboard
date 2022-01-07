@@ -8,6 +8,7 @@ import {
    AppSales,
    AppTasks,
 } from '../../../components/_dashboard/app'
+import { EmployeeOverviewBasicInfo } from '../../../components/_accounts/employees/overviews'
 
 const TOTAL = 1230000
 const TOTAL1 = 1230000
@@ -33,6 +34,9 @@ const DashboardApp = () => (
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
                <AppTasks TASKS={TASKS} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+               <EmployeeOverviewBasicInfo />
             </Grid>
          </Grid>
       </Container>

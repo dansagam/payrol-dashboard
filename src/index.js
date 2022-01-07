@@ -4,15 +4,19 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
+import { Provider } from 'react-redux'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import * as serviceWorker from './serviceWorker'
+import store from './app/store'
 
 ReactDOM.render(
    <HelmetProvider>
-      <Router>
-         <App />
-      </Router>
+      <Provider store={store}>
+         <Router>
+            <App />
+         </Router>
+      </Provider>
    </HelmetProvider>,
    document.getElementById('root')
 )

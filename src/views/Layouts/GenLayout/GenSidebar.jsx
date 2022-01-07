@@ -56,7 +56,7 @@ const GenSidebar = ({ isOpenSidebar, onCloseSidebar, account }) => {
       >
          <Box sx={{ px: 2.5, py: 3 }}>
             <Box component={RouterLink} to="/" sx={{ display: 'inline-flex' }}>
-               <Logo src="/static/logo.svg" />
+               <Logo src="/static/logo.png" />
             </Box>
          </Box>
          <Box>
