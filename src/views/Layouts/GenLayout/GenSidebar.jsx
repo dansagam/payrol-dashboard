@@ -125,7 +125,9 @@ const GenSidebar = ({ isOpenSidebar, onCloseSidebar, account }) => {
             <Drawer
                open={isOpenSidebar}
                onClose={onCloseSidebar}
-               PaperProps={{ sx: { width: DRAWER_WIDTH } }}
+               PaperProps={{
+                  sx: { width: DRAWER_WIDTH, bgcolor: 'secondary.dark' },
+               }}
             >
                {renderContent}
             </Drawer>
@@ -137,7 +139,7 @@ const GenSidebar = ({ isOpenSidebar, onCloseSidebar, account }) => {
                PaperProps={{
                   sx: {
                      width: DRAWER_WIDTH,
-                     bgcolor: 'background.default',
+                     bgcolor: 'secondary.dark',
                   },
                }}
             >
