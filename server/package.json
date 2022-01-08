@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "payroll-system",
   "version": "1.0.0",
   "description": "MERN payroll system",
   "main": "server.js",
