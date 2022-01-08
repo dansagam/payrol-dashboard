@@ -1,0 +1,36 @@
+{
+   "env": {
+      "browser": true,
+      "es2021": true
+   },
+   "extends": ["eslint:recommended", "prettier"],
+   "plugins": ["prettier"],
+   "parserOptions": {
+      "ecmaVersion": 13,
+      "sourceType": "module"
+   },
+   "rules": {
+      "arrow-body-style": ["error", "as-needed"],
+      "prettier/prettier": [
+         "error",
+         {
+            "singleQuote": true,
+            "parser": "flow",
+            "trailingComma": "es5",
+            "tabWidth": 3,
+            "semi": false,
+            "endOfLine": "auto",
+            "arrowParens": "always"
+         }
+      ],
+      "no-unused-vars": "warn",
+      "func-names": "off",
+      "no-undef": "off",
+      "no-nested-ternary": "off",
+      "no-shadow": [
+         0,
+         { "builtinGlobals": false, "hoist": "functions", "allow": [] }
+      ],
+      "no-underscore-dangle": [0, { "allow": ["foo_", "_bar"] }]
+   }
+}
