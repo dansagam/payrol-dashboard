@@ -23,7 +23,7 @@
             "arrowParens": "always"
          }
       ],
-      "no-unused-vars": "warn",
+      "no-unused-vars": "off",
       "func-names": "off",
       "no-undef": "off",
       "no-nested-ternary": "off",

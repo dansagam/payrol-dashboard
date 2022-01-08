@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 import { config } from 'dotenv'
 import path from 'path'
 import morgan from 'morgan'
+import { errorHandler, notFound } from './middlewares/errorMiddleware.js'
 
 config()
 const app = express()
@@ -28,5 +29,8 @@ if (process.env.NODE_ENV === 'production') {
       res.send('API is running')
    })
 }
+
+app.use(notFound)
+app.use(errorHandler)
 
 export default app
