@@ -2,6 +2,7 @@
   "name": "payroll-system",
   "version": "1.0.0",
   "description": "MERN payroll system",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -37,6 +38,8 @@
   "devDependencies": {
     "concurrently": "^7.0.0",
     "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1"
   }
