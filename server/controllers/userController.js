@@ -1,5 +1,9 @@
 import generateToken from '../utils/generateToken.js'
 import userServices from '../services/userServices.js'
+import sgMail from '@sendgrid/mail'
+import mongoose from 'mongoose'
+import nextSequenceValue, { prevSequenceValue } from './counterController.js'
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 /*
     @route GET api/v2/users
@@ -151,25 +155,36 @@ export const registerUser = async (req, res, next) => {
       if (existingEmail) {
          res.status(401)
          throw new Error('User already registered')
+      }
+      const _id = await nextSequenceValue('userid')
+      const newData = {
+         _id: _id,
+         email: email,
+         firstName: firstName,
+         lastName: lastName,
+         password: password,
+      }
+      const user = await userServices.registerUser(newData)
+      if (user) {
+         res.status(201).json({
+            success: true,
+            _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            status: user.status,
+            token: generateToken(user._id),
+         })
       } else {
-         const newData = {
-            email: email,
-            firstName: firstName,
-            lastName: lastName,
-            password: password,
-         }
-         const user = await userServices.registerUser(newData)
-         if (user) {
-            res.status(201).json({
-               success: true,
-               data: user,
-            })
-         } else {
-            res.status(401)
-            throw new Error(`User can't be created`)
-         }
+         await prevSequenceValue('userid')
+         res.status(401)
+         throw new Error(`User can't be created`)
       }
    } catch (err) {
+      if (err._message === 'User validation failed') {
+         await prevSequenceValue('userid')
+      }
       res.status(404)
       next(err)
    }
@@ -240,13 +255,18 @@ export const updateUserProfile = async (req, res, next) => {
 export const userRecovery = async (req, res, next) => {
    try {
       const { email } = req.body
-      const existingUser = await User.findOne({ email: email })
+      // const existingUser = await User.findOne({ email: email })
+      const existingUser = await userServices.deleteUser({ email: email })
       if (existingUser) {
          existingUser.generatePasswordReset()
-         const updatedUser = await User.findByIdAndUpdate(
+         // const updatedUser = await User.findByIdAndUpdate(
+         //    existingUser._id,
+         //    existingUser,
+         //    { new: true }
+         // )
+         const updatedUser = await userServices.updateUser(
             existingUser._id,
-            existingUser,
-            { new: true }
+            existingUser
          )
          if (updatedUser) {
             let link =
@@ -298,7 +318,11 @@ export const userRecovery = async (req, res, next) => {
 
 export const getUserReset = async (req, res, next) => {
    try {
-      const existingUserToken = await User.findOne({
+      // const existingUserToken = await User.findOne({
+      //    resetPasswordToken: req.params.token,
+      //    resetPasswordExpires: { $gt: Date.now() },
+      // })
+      const existingUserToken = await userServices.getUserByPath({
          resetPasswordToken: req.params.token,
          resetPasswordExpires: { $gt: Date.now() },
       })
@@ -326,7 +350,11 @@ export const getUserReset = async (req, res, next) => {
 export const resetPassword = async (req, res, next) => {
    try {
       const { password } = req.body
-      const foundUser = await User.findOne({
+      // const foundUser = await User.findOne({
+      //    resetPasswordToken: req.params.token,
+      //    resetPasswordExpires: { $gt: Date.now() },
+      // })
+      const foundUser = await userServices.getUserByPath({
          resetPasswordToken: req.params.token,
          resetPasswordExpires: { $gt: Date.now() },
       })
@@ -334,10 +362,14 @@ export const resetPassword = async (req, res, next) => {
          foundUser.password = password
          foundUser.resetPasswordToken = undefined
          foundUser.resetPasswordExpires = undefined
-         const updatedUser = await User.findByIdAndUpdate(
+         // const updatedUser = await User.findByIdAndUpdate(
+         //    foundUser._id,
+         //    foundUser,
+         //    { new: true }
+         // )
+         const updatedUser = await userServices.updateUser(
             foundUser._id,
-            foundUser,
-            { new: true }
+            foundUser
          )
          if (updatedUser) {
             let text = `Hi ${updatedUser.name} \n

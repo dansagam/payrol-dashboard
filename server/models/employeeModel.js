@@ -1,17 +1,17 @@
 import mongoose from 'mongoose'
-import { phoneTestFunc, emailTestFunc } from '../utils/generalUtil'
+import { phoneTestFunc, emailTestFunc } from '../utils/generalUtil.js'
 
 const contactSchema = new mongoose.Schema(
    {
       mobileNumber: {
          type: String,
          validate: {
-            validator: phoneTestFunc(v),
+            validator: (v) => phoneTestFunc(v),
             message: (props) => `${props.value} is not a valid phone number`,
          },
          required: true,
       },
-      a_phoneNumber: {
+      secPhoneNumber: {
          type: String,
       },
    },
@@ -73,7 +73,7 @@ const EmployeeSchema = new mongoose.Schema(
       personalEmail: {
          type: String,
          validate: {
-            validator: emailTestFunc(v),
+            validator: (v) => emailTestFunc(v),
             message: 'not a valid email',
          },
       },

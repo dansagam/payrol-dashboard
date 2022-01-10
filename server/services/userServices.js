@@ -30,8 +30,6 @@ const getUserByPath = async (newParam) => {
    const result = await User.findOne(newParam)
    if (result) {
       return result
-   } else {
-      throw new Error('No user found')
    }
 }
 
@@ -40,6 +38,7 @@ const registerUser = async (newData) => {
    if (result) {
       return result
    } else {
+      await prevSequenceValue('userid')
       throw new Error('User not created')
    }
 }

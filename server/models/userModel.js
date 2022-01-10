@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import nextSequenceValue from '../controllers/counterController.js'
+import { emailTestFunc } from '../utils/generalUtil.js'
 
 const userSchema = new mongoose.Schema(
    {
@@ -20,10 +21,16 @@ const userSchema = new mongoose.Schema(
       email: {
          type: String,
          required: true,
+         validate: {
+            validator: (v) => emailTestFunc(v),
+            message: 'not a valid email',
+         },
       },
       password: {
          type: String,
          required: true,
+         minlength: 8,
+         maxlength: 20,
       },
       isAdmin: {
          type: Boolean,

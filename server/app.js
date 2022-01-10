@@ -5,17 +5,20 @@ import { config } from 'dotenv'
 import path from 'path'
 import morgan from 'morgan'
 import { errorHandler, notFound } from './middlewares/errorMiddleware.js'
+import userRoute from './routes/userRoute.js'
+import connectDB from './db/connectDB.js'
 
 config()
+connectDB()
 const app = express()
 app.use(cookieParser())
 app.use(cors())
 app.use(express.json())
 
+app.use('/api/v2/users', userRoute)
 if (process.env.NODE_ENV === 'development') {
    app.use(morgan('dev'))
 }
-
 const __dirname = path.resolve()
 
 if (process.env.NODE_ENV === 'production') {

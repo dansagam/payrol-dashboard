@@ -18,7 +18,7 @@ export const emailTestFunc = (inputValue) => {
    //    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
    const emailMatch = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
    // const emailMatch = /^[a-z0-9\-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,3}/i
-   if (String(email).toLowerCase().match(emailMatch)) {
+   if (String(inputValue).toLowerCase().match(emailMatch)) {
       return true
    } else return false
 }

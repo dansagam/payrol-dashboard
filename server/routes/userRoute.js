@@ -12,7 +12,7 @@ import {
    userRecovery,
    resetPassword,
 } from '../controllers/userController.js'
-import { adminAuth, userAuth } from '../middlewares/authMiddleware'
+import { adminAuth, userAuth } from '../middlewares/authMiddleware.js'
 
 const router = express.Router()
 
@@ -34,3 +34,5 @@ router
 router.route('/recover').post(userRecovery)
 
 router.route('/reset/:token').get(getUserReset).post(resetPassword)
+
+export default router
