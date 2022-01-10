@@ -1,9 +1,14 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
+import nextSequenceValue from '../controllers/counterController.js'
 
 const userSchema = new mongoose.Schema(
    {
+      _id: {
+         type: Number,
+         required: true,
+      },
       firstName: {
          type: String,
          required: true,
@@ -50,9 +55,12 @@ userSchema.methods.verifyPassword = async function (enteredPassword) {
 }
 userSchema.pre('save', async function (next) {
    try {
+      // const chcee = await nextSequenceValue('userid')
+      // console.log(chcee)
       if (!this.isModified('password')) return next()
       const rounds = await bcrypt.genSalt(10)
       this.password = await bcrypt.hash(this.password, rounds)
+      // this._id = await nextSequenceValue('userid')
    } catch (err) {
       return next()
    }

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { phoneTestFunc } from '../utils/generalUtil'
+import { phoneTestFunc, emailTestFunc } from '../utils/generalUtil'
 
 const contactSchema = new mongoose.Schema(
    {
@@ -14,14 +14,35 @@ const contactSchema = new mongoose.Schema(
       a_phoneNumber: {
          type: String,
       },
-      email: {
-         type: String,
-      },
    },
    {
       timestamps: true,
    }
 )
+const addressSchema = new mongoose.Schema({
+   country: {
+      type: String,
+      required: true,
+   },
+   line1: {
+      type: String,
+      required: true,
+   },
+   city: {
+      type: String,
+   },
+   state: {
+      type: String,
+   },
+   zipCode: {
+      type: String,
+   },
+})
+const workerStatusSchema = new mongoose.Schema({
+   lastHireDate: { type: Date },
+   originalHireDate: { type: Date },
+   active: { type: Boolean },
+})
 const EmployeeSchema = new mongoose.Schema(
    {
       avatar: {
@@ -46,25 +67,37 @@ const EmployeeSchema = new mongoose.Schema(
       suffix: {
          type: String,
       },
-      contact: contactSchema,
-      address: {
+      primaryEmail: {
          type: String,
-         required: true,
       },
-      a_address: [
-         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Address',
+      personalEmail: {
+         type: String,
+         validate: {
+            validator: emailTestFunc(v),
+            message: 'not a valid email',
          },
-      ],
+      },
+      contact: contactSchema,
+      address: addressSchema,
+      // a_address: [
+      //    {
+      //       type: mongoose.Schema.Types.ObjectId,
+      //       ref: 'Address',
+      //    },
+      // ],
       dob: {
          type: Date,
          required: true,
+      },
+      account_id: {
+         type: mongoose.Schema.Types.ObjectId,
+         ref: 'EmployeeAccount',
       },
       userId: {
          type: mongoose.Schema.Types.ObjectId,
          ref: 'User',
       },
+      workerStatus: workerStatusSchema,
    },
    {
       timestamps: true,
