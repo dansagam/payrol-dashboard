@@ -1,3 +1,5 @@
+import Role from '../models/roleModel.js'
+
 export const phoneTestFunc = (inputTxt) => {
    // let phoneMatch = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/
    // const phoneMatch = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
@@ -21,4 +23,16 @@ export const emailTestFunc = (inputValue) => {
    if (String(inputValue).toLowerCase().match(emailMatch)) {
       return true
    } else return false
+}
+
+export const roleTestFunc = async (id, inputTxt) => {
+   const result = await Role.findById(id)
+   if (result) {
+      const role = result.role
+      if (role.includes(inputTxt)) {
+         return true
+      } else return false
+   } else {
+      return false
+   }
 }

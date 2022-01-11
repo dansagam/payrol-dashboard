@@ -7,6 +7,7 @@ import morgan from 'morgan'
 import { errorHandler, notFound } from './middlewares/errorMiddleware.js'
 import userRoute from './routes/userRoute.js'
 import connectDB from './db/connectDB.js'
+import employeeRoute from './routes/employeeRoute.js'
 
 config()
 connectDB()
@@ -16,6 +17,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/api/v2/users', userRoute)
+app.use('/api/v2/employees', employeeRoute)
 if (process.env.NODE_ENV === 'development') {
    app.use(morgan('dev'))
 }

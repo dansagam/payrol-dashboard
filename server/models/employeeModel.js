@@ -1,30 +1,36 @@
 import mongoose from 'mongoose'
-import { phoneTestFunc, emailTestFunc } from '../utils/generalUtil.js'
+import {
+   phoneTestFunc,
+   emailTestFunc,
+   roleTestFunc,
+} from '../utils/generalUtil.js'
 
-const contactSchema = new mongoose.Schema(
-   {
-      mobileNumber: {
-         type: String,
-         validate: {
-            validator: (v) => phoneTestFunc(v),
-            message: (props) => `${props.value} is not a valid phone number`,
-         },
-         required: true,
+const contactSchema = new mongoose.Schema({
+   mobileNumber: {
+      type: String,
+      validate: {
+         validator: (v) => phoneTestFunc(v),
+         message: (props) => `${props.value} is not a valid phone number`,
       },
-      secPhoneNumber: {
-         type: String,
+      required: true,
+   },
+   secPhoneNumber: {
+      type: String,
+      validate: {
+         validator: (v) => {
+            if (v === null) return true
+            phoneTestFunc(v)
+         },
+         message: (props) => `${props.value} is not a valid phone number`,
       },
    },
-   {
-      timestamps: true,
-   }
-)
+})
 const addressSchema = new mongoose.Schema({
    country: {
       type: String,
-      required: true,
+      // required: true,
    },
-   line1: {
+   line: {
       type: String,
       required: true,
    },
@@ -40,11 +46,15 @@ const addressSchema = new mongoose.Schema({
 })
 const workerStatusSchema = new mongoose.Schema({
    lastHireDate: { type: Date },
-   originalHireDate: { type: Date },
-   active: { type: Boolean },
+   originalHireDate: { type: Date, default: Date.now },
+   active: { type: Boolean, default: true },
 })
 const EmployeeSchema = new mongoose.Schema(
    {
+      _id: {
+         type: Number,
+         required: true,
+      },
       avatar: {
          type: String,
       },
@@ -62,6 +72,7 @@ const EmployeeSchema = new mongoose.Schema(
       prefix: {
          type: String,
          required: [true, 'Prefix is required'],
+         enum: ['Mr', 'Mrs', 'Miss', 'Ms', 'Engr'],
          default: 'Mr',
       },
       suffix: {
@@ -69,30 +80,61 @@ const EmployeeSchema = new mongoose.Schema(
       },
       primaryEmail: {
          type: String,
+         validate: {
+            validator: (v) => {
+               if (v === null) return true
+               emailTestFunc(v)
+            },
+            message: 'not a valid email',
+         },
       },
       personalEmail: {
          type: String,
          validate: {
-            validator: (v) => emailTestFunc(v),
+            validator: (v) => {
+               if (v === null) return true
+               emailTestFunc(v)
+            },
             message: 'not a valid email',
          },
       },
+      salaryAmount: {
+         type: Number,
+         required: true,
+         default: 0,
+      },
+      salaryMode: {
+         type: String,
+         required: true,
+         enum: ['monthly', 'weekly', 'bi-weekly', 'hourly'],
+         default: 'monthly',
+      },
       contact: contactSchema,
       address: addressSchema,
-      // a_address: [
-      //    {
-      //       type: mongoose.Schema.Types.ObjectId,
-      //       ref: 'Address',
-      //    },
-      // ],
+      role: {
+         type: String,
+         required: true,
+         validate: {
+            validator: (v) => roleTestFunc('employeerole', v),
+         },
+         default: 'general',
+         // enum: [
+         //    'engineering',
+         //    'account',
+         //    'customer care',
+         //    'management',
+         //    'general',
+         // ],
+      },
       dob: {
          type: Date,
          required: true,
+         default: Date.now(),
       },
-      account_id: {
-         type: mongoose.Schema.Types.ObjectId,
-         ref: 'EmployeeAccount',
-      },
+      // account_id: {
+      //    type: mongoose.Schema.Types.ObjectId,
+      //    ref: 'EmployeeAccountDetail',
+      // },
       userId: {
          type: mongoose.Schema.Types.ObjectId,
          ref: 'User',

@@ -18,11 +18,18 @@ const accountSchema = new mongoose.Schema(
          type: String,
          required: true,
       },
+      employeeId: {
+         type: mongoose.Schema.Types.ObjectId,
+         ref: 'Employee',
+      },
    },
    {
       timestamps: true,
    }
 )
 
-const EmployeeAccount = mongoose.model('EmployeeAccount', accountSchema)
-export default EmployeeAccount
+const EmployeeAccountDetail = mongoose.model(
+   'EmployeeAccountDetail',
+   accountSchema
+)
+export default EmployeeAccountDetail

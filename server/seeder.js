@@ -4,6 +4,9 @@ import { config } from 'dotenv'
 import counter from './data/counter.js'
 import User from './models/userModel.js'
 import users from './data/users.js'
+import Role from './models/roleModel.js'
+import Employee from './models/employeeModel.js'
+import employee from './data/employees.js'
 
 config()
 connectDB()
@@ -13,7 +16,18 @@ const importData = async () => {
       // await Promise.all([Counter.insertMany(counter), User.insertMany(users)])
       // await Counter.insertMany(counter)
       // await nextSequenceValue('userid')
-      await User.insertMany(users)
+      // await User.insertMany(users)
+      await Employee.insertMany(employee)
+      // await Role.insertMany({
+      //    _id: 'employeerole',
+      //    role: [
+      //       'engineering',
+      //       'account',
+      //       'customer care',
+      //       'management',
+      //       'general',
+      //    ],
+      // })
       console.log('data imported')
       process.exit()
    } catch (err) {

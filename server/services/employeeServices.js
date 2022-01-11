@@ -1,3 +1,4 @@
+import { prevSequenceValue } from '../controllers/counterController.js'
 import Employee from '../models/employeeModel.js'
 
 const getEmployees = async () => {
@@ -22,7 +23,8 @@ const getEmpoyeeByPath = async (newQuery) => {
    if (result) {
       return result
    } else {
-      throw new Error('No Employee Found')
+      // throw new Error('No Employee Found')
+      return false
    }
 }
 
@@ -39,6 +41,7 @@ const createEmployee = async (newData) => {
    if (result) {
       return result
    } else {
+      await prevSequenceValue('employeeid')
       throw new Error('Employee could not be created, please check the details')
    }
 }
