@@ -2,6 +2,10 @@ import mongoose from 'mongoose'
 
 const expenseSchema = new mongoose.Schema(
    {
+      _id: {
+         type: Number,
+         required: true,
+      },
       description: {
          type: String,
          required: true,

@@ -54,6 +54,10 @@ const emailSchema = new mongoose.Schema({
 })
 const customerSchema = new mongoose.Schema(
    {
+      _id: {
+         type: Number,
+         required: true,
+      },
       name: {
          type: String,
          required: true,

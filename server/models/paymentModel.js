@@ -2,6 +2,10 @@ import mongoose from 'mongoose'
 
 const paymentSchema = new mongoose.Schema(
    {
+      _id: {
+         type: Number,
+         required: true,
+      },
       employeeId: {
          type: mongoose.Schema.Types.ObjectId,
          required: true,
