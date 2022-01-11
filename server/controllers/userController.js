@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import generateToken from '../utils/generateToken.js'
 import userServices from '../services/userServices.js'
 import sgMail from '@sendgrid/mail'
@@ -12,7 +13,47 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 */
 export const getUsers = async (req, res, next) => {
    try {
-      const response = await userServices.getUsers()
+      const pageSize = 10
+      const page = req.query.pageNumber || 1
+      const keywordSplit = req.query.keyword ? req.query.keyword.split(' ') : []
+      console.log(keywordSplit, keywordSplit.length)
+      if (keywordSplit.length > 1) {
+         keywordSplit[1] = keywordSplit[1] ? keywordSplit[1] : ''
+         keywordSplit[0] = keywordSplit[0] ? keywordSplit[0] : ''
+      }
+      keywordSplit[0] = keywordSplit[0] ? keywordSplit[0] : ''
+      console.log(keywordSplit, keywordSplit.length)
+      const keyword =
+         req.query.keyword && keywordSplit.length === 2
+            ? {
+               firstName: {
+                  $regex: `${keywordSplit[0]}|${keywordSplit[1]}`,
+                  $options: 'i',
+               },
+               lastName: {
+                  $regex: `${keywordSplit[1]}|${keywordSplit[0]}`,
+                  $options: 'i',
+               },
+            }
+            : req.query.keyword && keywordSplit.length === 1
+               ? {
+                  $or: [
+                     {
+                        firstName: {
+                           $regex: `${keywordSplit[0]}`,
+                           $options: 'i',
+                        },
+                     },
+                     {
+                        lastName: {
+                           $regex: `${keywordSplit[0]}`,
+                           $options: 'i',
+                        },
+                     },
+                  ],
+               }
+               : {}
+      const response = await userServices.getUsers({ ...keyword }, pageSize, page)
       if (response) {
          res.status(201).json({
             success: true,

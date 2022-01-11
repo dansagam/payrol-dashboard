@@ -1,8 +1,10 @@
 import { prevSequenceValue } from '../controllers/counterController.js'
 import Employee from '../models/employeeModel.js'
 
-const getEmployees = async () => {
-   const response = await Employee.find()
+const getEmployees = async (query, pageSize, page) => {
+   const response = await Employee.find(query)
+      .limit(pageSize)
+      .skip(pageSize * (page - 1))
    if (response) {
       return response
    } else {

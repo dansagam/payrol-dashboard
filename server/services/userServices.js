@@ -1,7 +1,9 @@
 import User from '../models/userModel.js'
 
-const getUsers = async () => {
-   const result = await User.find({})
+const getUsers = async (query, pageSize, page) => {
+   const result = await User.find(query)
+      .limit(pageSize)
+      .skip(pageSize * (page - 1))
    if (result) {
       return result
    } else {

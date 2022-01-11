@@ -1,15 +1,92 @@
+/* eslint-disable prettier/prettier */
 // import Employee from '../models/employeeModel.js'
 import employeeService from '../services/employeeServices.js'
 import nextSequenceValue, { prevSequenceValue } from './counterController.js'
 
 export const getEmployee = async (req, res, next) => {
    try {
-      const employee = await employeeService.getEmployees()
+      const pageSize = 10
+      const page = req.query.pageNumber || 1
+      const keywordSplit = req.query.keyword ? req.query.keyword.split(' ') : []
+      console.log(keywordSplit, keywordSplit.length)
+      if (keywordSplit.length > 1) {
+         keywordSplit[1] = keywordSplit[1] ? keywordSplit[1] : ''
+         keywordSplit[0] = keywordSplit[0] ? keywordSplit[0] : ''
+      }
+      keywordSplit[0] = keywordSplit[0] ? keywordSplit[0] : ''
+      console.log(keywordSplit, keywordSplit.length)
+      const keyword = req.query.keyword && keywordSplit.length === 2
+         ? {
+            firstName: {
+               $regex: `${keywordSplit[0]}|${keywordSplit[1]}`,
+               $options: 'i',
+            },
+            lastName: {
+               $regex: `${keywordSplit[1]}|${keywordSplit[0]}`,
+               $options: 'i',
+            },
+         }
+         : req.query.keyword && keywordSplit.length === 1
+            ? {
+               $or: [
+                  {
+                     firstName: {
+                        $regex: `${keywordSplit[0]}`,
+                        $options: 'i',
+                     },
+                  },
+                  {
+                     lastName: {
+                        $regex: `${keywordSplit[0]}`,
+                        $options: 'i',
+                     },
+                  }
+
+               ]
+            } : {}
+      // if (req.query.keyword && keywordSplit.length === 1) {
+      //    console.log('sss')
+      //    keyword = {
+      //       $or: [
+      //          {
+      //             firstName: {
+      //                $regex: `${keywordSplit[0]}`,
+      //                $options: 'i',
+      //             },
+      //          },
+      //          {
+      //             lastName: {
+      //                $regex: `${keywordSplit[0]}`,
+      //                $options: 'i',
+      //             },
+      //          }
+
+      //       ]
+      //    }
+      // } else if (req.query.keyword && keywordSplit.length === 2) {
+      //    console.log()
+      //    keyword = {
+      //       firstName: {
+      //          $regex: `${keywordSplit[0]}|${keywordSplit[1]}`,
+      //          $options: 'i',
+      //       },
+      //       lastName: {
+      //          $regex: `${keywordSplit[1]}|${keywordSplit[0]}`,
+      //          $options: 'i',
+      //       },
+      //    }
+      // } else keyword = {}
+      console.log({ ...keyword })
+      const employee = await employeeService.getEmployees({ ...keyword }, pageSize, page)
       if (employee) {
          res.status(201).json({
             success: true,
             count: employee.length,
-            data: employee,
+            data: {
+               employees: employee,
+               page: page,
+               pages: Math.ceil(employee.length / pageSize)
+            },
          })
       } else {
          res.status(401)
