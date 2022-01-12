@@ -7,7 +7,8 @@ import users from './data/users.js'
 import Role from './models/roleModel.js'
 import Employee from './models/employeeModel.js'
 import employee from './data/employees.js'
-
+import EmployeeAccountDetail from './models/accountModel.js'
+import Customer from './models/customerModel.js'
 config()
 connectDB()
 

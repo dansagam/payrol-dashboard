@@ -1,5 +1,7 @@
 import Role from '../models/roleModel.js'
 
+import { format, formatDistanceToNow } from 'date-fns'
+
 export const phoneTestFunc = (inputTxt) => {
    // let phoneMatch = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/
    // const phoneMatch = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
@@ -35,4 +37,37 @@ export const roleTestFunc = async (id, inputTxt) => {
    } else {
       return false
    }
+}
+// ----------------------------------------------------------------------
+
+export function fDate(date) {
+   return format(new Date(date), 'dd MMMM yyyy')
+}
+
+export function fDateTime(date) {
+   return format(new Date(date), 'dd MMM yyyy HH:mm')
+}
+
+export function fDateTimeSuffix(date) {
+   return format(new Date(date), 'dd/MM/yyyy hh:mm p')
+}
+export function fDateDB(date) {
+   return format(new Date(date), 'yyyy-MM-dd')
+}
+
+export function fToNow(date) {
+   return formatDistanceToNow(new Date(date), {
+      addSuffix: true,
+   })
+}
+
+export function durationCalc(durationMode, start, end) {
+   const stTm = new Date(start).getTime()
+   const enTm = new Date(end).getTime()
+   if (durationMode === 'monthly' || durationMode === 'weekly') {
+      return Math.floor((enTm - stTm) / (1000 * 3600 * 24))
+   } else if (durationMode === 'hourly') {
+      return Math.floor((enTm - stTm) / (1000 * 3600))
+   }
+   return
 }

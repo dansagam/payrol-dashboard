@@ -72,7 +72,9 @@ const EmployeeSchema = new mongoose.Schema(
       prefix: {
          type: String,
          required: [true, 'Prefix is required'],
-         enum: ['Mr', 'Mrs', 'Miss', 'Ms', 'Engr'],
+         validate: {
+            validator: (v) => roleTestFunc('employeeprefixid', v),
+         },
          default: 'Mr',
       },
       suffix: {
@@ -106,7 +108,9 @@ const EmployeeSchema = new mongoose.Schema(
       salaryMode: {
          type: String,
          required: true,
-         enum: ['monthly', 'weekly', 'bi-weekly', 'hourly'],
+         validate: {
+            validator: (v) => roleTestFunc('employeesalarymodeid', v),
+         },
          default: 'monthly',
       },
       contact: contactSchema,

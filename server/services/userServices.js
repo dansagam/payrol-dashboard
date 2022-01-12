@@ -1,3 +1,4 @@
+import { prevSequenceValue } from '../controllers/counterController.js'
 import User from '../models/userModel.js'
 
 const getUsers = async (query, pageSize, page) => {

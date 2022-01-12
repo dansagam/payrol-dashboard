@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { roleTestFunc } from '../utils/generalUtil'
 
 const accountSchema = new mongoose.Schema(
    {
@@ -17,9 +18,12 @@ const accountSchema = new mongoose.Schema(
       bankName: {
          type: String,
          required: true,
+         validate: {
+            validator: (v) => roleTestFunc('accountbanknameid', v),
+         },
       },
       employeeId: {
-         type: mongoose.Schema.Types.ObjectId,
+         type: mongoose.Schema.Types.Number,
          ref: 'Employee',
       },
    },

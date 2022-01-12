@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { roleTestFunc } from '../utils/generalUtil.js'
 
 const paymentSchema = new mongoose.Schema(
    {
@@ -22,7 +23,10 @@ const paymentSchema = new mongoose.Schema(
       paymentStatus: {
          type: String,
          required: true,
-         enum: ['paid', 'unpaid', 'partial'],
+         // enum: ['paid', 'unpaid', 'partial'],
+         validate: {
+            validator: (v) => roleTestFunc('paymentpaymentstatusid', v),
+         },
          default: 'unpaid',
       },
       active: {
@@ -34,7 +38,10 @@ const paymentSchema = new mongoose.Schema(
       paymentFrequency: {
          type: Number,
          required: true,
-         enum: ['weekly', 'hourly', 'monthly'],
+         // enum: ['weekly', 'hourly', 'monthly'],
+         validate: {
+            validator: (v) => roleTestFunc('paymentpaymentfrequencyid', v),
+         },
          default: 'monthly',
       },
       paymentDate: {

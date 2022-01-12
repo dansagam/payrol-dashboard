@@ -58,7 +58,11 @@ export const getUsers = async (req, res, next) => {
          res.status(201).json({
             success: true,
             count: response.length,
-            data: response,
+            data: {
+               users: response,
+               page: page,
+               pages: Math.ceil(response.length / pageSize)
+            },
          })
       } else {
          res.status(401)

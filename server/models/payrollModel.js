@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { roleTestFunc } from '../utils/generalUtil.js'
 
 const payrollSchema = new mongoose.Schema(
    {
@@ -7,12 +8,12 @@ const payrollSchema = new mongoose.Schema(
          required: true,
       },
       employeeId: {
-         type: mongoose.Schema.Types.ObjectId,
+         type: mongoose.Schema.Types.Number,
          required: true,
          ref: 'Employee',
       },
       accountId: {
-         type: mongoose.Schema.Types.ObjectId,
+         type: mongoose.Schema.Types.Number,
          ref: 'EmployeeAccountDetail',
       },
       periodStartAt: {
@@ -27,15 +28,18 @@ const payrollSchema = new mongoose.Schema(
       periodDuration: {
          type: Number,
          required: true,
-         default: 0,
+         default: 1,
       },
       periodMode: {
          type: String,
          required: true,
-         enum: ['monthly', 'weekly', 'bi-weekly', 'hourly'],
+         // enum: ['monthly', 'weekly', 'bi-weekly', 'hourly'],
+         validate: {
+            validator: (v) => roleTestFunc('payrollperiodmodeid', v),
+         },
          default: 'monthly',
       },
-      Rate: {
+      rate: {
          type: Number,
          required: true,
          default: 0,
@@ -48,13 +52,19 @@ const payrollSchema = new mongoose.Schema(
       status: {
          type: String,
          required: true,
-         enum: ['pending', 'active', 'inactive', 'finalised', 'close'],
+         // enum: ['pending', 'active', 'inactive', 'finalised', 'close'],
+         validate: {
+            validator: (v) => roleTestFunc('payrollstatusid', v),
+         },
          default: 'pending',
       },
       paymentStatus: {
          type: String,
          required: true,
          enum: ['paid', 'unpaid', 'partial'],
+         validate: {
+            validator: (v) => roleTestFunc('payrollpaymentstatusid', v),
+         },
          default: 'unpaid',
       },
    },

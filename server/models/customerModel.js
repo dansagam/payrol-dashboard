@@ -1,23 +1,31 @@
 import mongoose from 'mongoose'
-import { phoneTestFunc, emailTestFunc } from '../utils/generalUtil.js'
+import {
+   phoneTestFunc,
+   emailTestFunc,
+   roleTestFunc,
+} from '../utils/generalUtil.js'
 
 const addressSchema = new mongoose.Schema({
    country: {
       type: String,
       required: true,
+      default: 'Nigeria',
    },
-   line1: {
+   line: {
       type: String,
       required: true,
    },
    city: {
       type: String,
+      default: 'Lagos',
    },
    state: {
       type: String,
+      default: 'Lagos',
    },
    zipCode: {
       type: String,
+      default: '110011',
    },
 })
 const contactSchema = new mongoose.Schema(
@@ -66,7 +74,10 @@ const customerSchema = new mongoose.Schema(
       status: {
          type: String,
          required: true,
-         enum: ['active', 'inactive', 'suspended'],
+         // enum: ['active', 'inactive', 'suspended'],
+         validate: {
+            validator: (v) => roleTestFunc('customerstatusid', v),
+         },
          default: 'active',
       },
       contactNumber: contactSchema,
