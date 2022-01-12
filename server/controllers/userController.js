@@ -301,7 +301,7 @@ export const userRecovery = async (req, res, next) => {
    try {
       const { email } = req.body
       // const existingUser = await User.findOne({ email: email })
-      const existingUser = await userServices.deleteUser({ email: email })
+      const existingUser = await userServices.getUserByPath({ email: email })
       if (existingUser) {
          existingUser.generatePasswordReset()
          // const updatedUser = await User.findByIdAndUpdate(

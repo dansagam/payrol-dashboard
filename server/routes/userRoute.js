@@ -20,7 +20,7 @@ import {
 
 const router = express.Router()
 
-router.route('/').get(userAuth, adminAuth, getUsers).post(registerUser)
+router.route('/').get(userAuth, getUsers).post(registerUser)
 
 router
    .route('/:id')
