@@ -26,14 +26,14 @@ const getAllUserByPath = async (newParam) => {
    if (result && result.length > 0) {
       return result
    } else {
-      throw new Error('No user foun')
+      throw new Error('No user found')
    }
 }
 const getUserByPath = async (newParam) => {
    const result = await User.findOne(newParam)
    if (result) {
       return result
-   }
+   } else return false
 }
 
 const registerUser = async (newData) => {
