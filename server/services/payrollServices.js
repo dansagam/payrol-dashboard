@@ -12,7 +12,7 @@ const getPayroll = async (queryData, pageSize, page) => {
       .populate({
          path: 'accountId',
       })
-   if (result) {
+   if (result && result.length > 0) {
       return result
    } else {
       throw new Error('No Payroll Found')
@@ -53,7 +53,7 @@ const getAllPayrollByPath = async (newQuery) => {
       .populate({
          path: 'accountId',
       })
-   if (result) {
+   if (result && result.length > 0) {
       return result
    } else return false
 }

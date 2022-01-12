@@ -12,7 +12,6 @@
     "lint": "eslint --init",
     "lints": "eslint .",
     "lint:fix": "eslint --fix",
-    "lint:index": "eslint --fix ./src/App.js",
     "format": "prettier --config ./.prettierrc  './**/*.{js,jsx,ts,tsx,css,md,json}' --write ",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node seeder",

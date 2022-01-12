@@ -3,15 +3,21 @@ import Payment from '../models/paymentModel.js'
 
 const getPayments = async (query, pageSize, page) => {
    const result = await Payment.find(query)
+      .populate({ path: 'employeeId' })
+      .populate({ path: 'accountId' })
+      .populate({ path: 'payrollId' })
       .limit(pageSize)
       .skip(pageSize * (page - 1))
-   if (result) {
+   if (result && result.length > 0) {
       return result
    } else return false
 }
 
 const getPaymentById = async (id) => {
    const result = await Payment.findById(id)
+      .populate({ path: 'employeeId' })
+      .populate({ path: 'accountId' })
+      .populate({ path: 'payrollId' })
    if (result) {
       return result
    } else return false
@@ -19,13 +25,19 @@ const getPaymentById = async (id) => {
 
 const getAllPaymentsByPath = async (newParam) => {
    const result = await Payment.find(newParam)
-   if (result) {
+      .populate({ path: 'employeeId' })
+      .populate({ path: 'accountId' })
+      .populate({ path: 'payrollId' })
+   if (result && result.length > 0) {
       return result
    } else return false
 }
 
 const getPaymentByPath = async (newParam) => {
    const result = await Payment.findOne(newParam)
+      .populate({ path: 'employeeId' })
+      .populate({ path: 'accountId' })
+      .populate({ path: 'payrollId' })
    if (result) {
       return result
    } else return false
@@ -40,6 +52,15 @@ const addNewPayment = async (newData) => {
       return false
    }
 }
+const updatePayment = async (id, newData) => {
+   const result = await Payment.findByIdAndUpdate(id, newData, { new: true })
+      .populate({ path: 'employeeId' })
+      .populate({ path: 'accountId' })
+      .populate({ path: 'payrollId' })
+   if (result) {
+      return result
+   } else return false
+}
 
 const paymentService = {
    getPaymentById: getPaymentById,
@@ -47,6 +68,7 @@ const paymentService = {
    addNewPayment: addNewPayment,
    getAllPaymentsByPath: getAllPaymentsByPath,
    getPaymentByPath: getPaymentByPath,
+   updatePayment: updatePayment,
 }
 
 export default paymentService

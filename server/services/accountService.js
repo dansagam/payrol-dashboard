@@ -7,7 +7,7 @@ const getAccounts = async (query, pageSize, page) => {
       })
       .limit(pageSize)
       .skip(pageSize * (page - 1))
-   if (result) {
+   if (result && result.length > 0) {
       return result
    } else return false
 }
@@ -34,7 +34,7 @@ const getAllByPath = async (newQuery) => {
    const result = await EmployeeAccountDetail.find(newQuery).populate({
       path: 'employeeId',
    })
-   if (result) {
+   if (result && result.length > 0) {
       return result
    } else return false
 }

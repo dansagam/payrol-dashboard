@@ -5,11 +5,9 @@ const getEmployees = async (query, pageSize, page) => {
    const response = await Employee.find(query)
       .limit(pageSize)
       .skip(pageSize * (page - 1))
-   if (response) {
+   if (response && response.length > 0) {
       return response
-   } else {
-      throw new Error('No Employee found')
-   }
+   } else return false
 }
 
 const getEmployeeById = async (id) => {
@@ -32,11 +30,9 @@ const getEmpoyeeByPath = async (newQuery) => {
 
 const getAllEmployeesByPath = async (newQuery) => {
    const result = await Employee.find(newQuery)
-   if (result) {
+   if (result && result.length > 0) {
       return result
-   } else {
-      throw new Error('No Employee Found')
-   }
+   } else return false
 }
 const createEmployee = async (newData) => {
    const result = await Employee.create(newData)

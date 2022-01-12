@@ -5,7 +5,7 @@ const getUsers = async (query, pageSize, page) => {
    const result = await User.find(query)
       .limit(pageSize)
       .skip(pageSize * (page - 1))
-   if (result) {
+   if (result && result.length > 0) {
       return result
    } else {
       throw new Error('No User Found')
@@ -23,7 +23,7 @@ const getUserById = async (id) => {
 
 const getAllUserByPath = async (newParam) => {
    const result = await User.find(newParam)
-   if (result) {
+   if (result && result.length > 0) {
       return result
    } else {
       throw new Error('No user foun')

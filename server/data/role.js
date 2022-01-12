@@ -17,7 +17,7 @@ const role = [
    },
    {
       _id: 'paymentpaymentfrequencyid',
-      role: ['weekly', 'hourly', 'monthly'],
+      role: ['monthly', 'weekly', 'bi-weekly', 'hourly'],
    },
    {
       _id: 'employeesalarymodeid',

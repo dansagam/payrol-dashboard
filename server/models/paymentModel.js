@@ -38,7 +38,7 @@ const paymentSchema = new mongoose.Schema(
       paymentFrequency: {
          type: Number,
          required: true,
-         // enum: ['weekly', 'hourly', 'monthly'],
+         // enum: ['weekly', 'hourly','bi-weekly', 'monthly'],
          validate: {
             validator: (v) => roleTestFunc('paymentpaymentfrequencyid', v),
          },
@@ -46,6 +46,22 @@ const paymentSchema = new mongoose.Schema(
       },
       paymentDate: {
          type: Date,
+         default: Date.now(),
+      },
+      rate: {
+         type: Number,
+         required: true,
+         default: 0,
+      },
+      totalAmount: {
+         type: Number,
+         required: true,
+         default: 0,
+      },
+      duration: {
+         type: Number,
+         required: true,
+         default: 0,
       },
    },
    {
