@@ -11,26 +11,21 @@ import EmployeeAccountDetail from './models/accountModel.js'
 import Customer from './models/customerModel.js'
 import account from './data/account.js'
 import customers from './data/customers.js'
+import Payroll from './models/payrollModel.js'
+import Payment from './models/paymentModel.js'
+import role from './data/role.js'
 config()
 connectDB()
-
 const importData = async () => {
    try {
-      // await Promise.all([Counter.insertMany(counter), User.insertMany(users)])
-      // await Counter.insertMany(counter)
-      // await nextSequenceValue('userid')
-      // await User.insertMany(users)
-      await Employee.insertMany(employee)
-      // await Role.insertMany({
-      //    _id: 'employeerole',
-      //    role: [
-      //       'engineering',
-      //       'account',
-      //       'customer care',
-      //       'management',
-      //       'general',
-      //    ],
-      // })
+      await Promise.all([
+         Counter.insertMany(counter),
+         Role.insertMany(role),
+         User.insertMany(users),
+         Employee.insertMany(employee),
+         Customer.insertMany(customers),
+         EmployeeAccountDetail.insertMany(account),
+      ])
       console.log('data imported')
       process.exit()
    } catch (err) {
@@ -40,7 +35,17 @@ const importData = async () => {
 }
 const destroyData = async () => {
    try {
-      await Promise.all([Counter.deleteMany(), User.deleteMany()])
+      await Promise.all([
+         Counter.deleteMany(),
+         User.deleteMany(),
+         Payroll.deleteMany(),
+         Payment.deleteMany(),
+         User.deleteMany(),
+         Employee.deleteMany(),
+         Customer.deleteMany(),
+         EmployeeAccountDetail.deleteMany(),
+         Role.deleteMany(),
+      ])
       console.log('Data destroyed')
       process.exit()
    } catch (err) {

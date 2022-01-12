@@ -2,6 +2,11 @@ import accountService from '../services/accountService.js'
 import employeeService from '../services/employeeServices.js'
 import nextSequenceValue, { prevSequenceValue } from './counterController.js'
 
+/*
+    @route GET api/v2/accounts
+    @desc get all accounts
+    @access public
+*/
 export const getAccounts = async (req, res, next) => {
    try {
       const pageSize = 10
@@ -27,6 +32,11 @@ export const getAccounts = async (req, res, next) => {
    }
 }
 
+/*
+    @route GET api/v2/account/:id
+    @desc 
+    @access private
+*/
 export const getAccountById = async (req, res, next) => {
    try {
       const account = await accountService.getAccountById(req.params.id)
@@ -44,6 +54,12 @@ export const getAccountById = async (req, res, next) => {
       next(err)
    }
 }
+
+/*
+    @route POST api/v2/accounts
+    @desc 
+    @access private
+*/
 export const createNewAccount = async (req, res, next) => {
    try {
       const { accountNumber, accountName, bankName, employeeId } = req.body

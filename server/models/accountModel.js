@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { roleTestFunc } from '../utils/generalUtil'
+import { roleTestFunc } from '../utils/generalUtil.js'
 
 const accountSchema = new mongoose.Schema(
    {

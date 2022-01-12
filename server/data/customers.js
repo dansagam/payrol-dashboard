@@ -11,7 +11,7 @@ const customers = [
       },
       status: 'active',
       contactNumber: {
-         primaryContact: '+234-878-888-999-9890',
+         primaryContact: '+234-878-999-9890',
       },
       constactEmail: {
          primaryEmail: 'peoneteng@likeicare.com',
@@ -29,7 +29,7 @@ const customers = [
       },
       status: 'active',
       contactNumber: {
-         primaryContact: '+234-812-888-999-9890',
+         primaryContact: '+234-812-999-9890',
       },
       constactEmail: {
          primaryEmail: 'gometeng@likeicare.com',
@@ -47,7 +47,7 @@ const customers = [
       },
       status: 'active',
       contactNumber: {
-         primaryContact: '+234-809-888-999-9890',
+         primaryContact: '+234-809-999-9890',
       },
       constactEmail: {
          primaryEmail: 'systimeeng@likeicare.com',
