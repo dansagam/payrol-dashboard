@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
          type: String,
          required: true,
          minlength: 8,
-         maxlength: 20,
+         maxlength: 200,
       },
       isAdmin: {
          type: Boolean,

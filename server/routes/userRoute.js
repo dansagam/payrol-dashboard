@@ -12,7 +12,11 @@ import {
    userRecovery,
    resetPassword,
 } from '../controllers/userController.js'
-import { adminAuth, userAuth } from '../middlewares/authMiddleware.js'
+import {
+   adminAuth,
+   userAuth,
+   userAccountOwnership,
+} from '../middlewares/authMiddleware.js'
 
 const router = express.Router()
 
@@ -30,6 +34,7 @@ router
    .route('/:id/profile')
    .get(userAuth, getUserProfile)
    .put(userAuth, updateUserProfile)
+   .delete(userAuth, userAccountOwnership, deleteUser)
 
 router.route('/recover').post(userRecovery)
 

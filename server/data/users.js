@@ -1,4 +1,5 @@
 import nextSequenceValue from '../controllers/counterController.js'
+import bcrypt from 'bcrypt'
 
 const users = [
    {
@@ -6,21 +7,21 @@ const users = [
       firstName: 'Adams',
       lastName: 'Mohammed',
       email: 'adams@likeyoucare.com',
-      password: '12345678',
+      password: bcrypt.hashSync('12345678', 10),
    },
    {
       _id: 2,
       firstName: 'Public',
       lastName: 'User',
       email: 'general@likeyoucare.com',
-      password: '12345678',
+      password: bcrypt.hashSync('12345678', 10),
    },
    {
       _id: 3,
       firstName: 'Admin',
       lastName: 'User',
       email: 'admin@likeyoucare.com',
-      password: '12345678',
+      password: bcrypt.hashSync('12345678', 10),
       isAdmin: true,
    },
    {
@@ -28,7 +29,7 @@ const users = [
       firstName: 'Michael',
       lastName: 'James',
       email: 'mike.james@likeyoucare.com',
-      password: '12345678',
+      password: bcrypt.hashSync('12345678', 10),
    },
 ]
 

@@ -8,6 +8,9 @@ import { errorHandler, notFound } from './middlewares/errorMiddleware.js'
 import userRoute from './routes/userRoute.js'
 import connectDB from './db/connectDB.js'
 import employeeRoute from './routes/employeeRoute.js'
+import paymentRoute from './routes/paymentRoute.js'
+import payrollRoute from './routes/payrollRoute.js'
+import accountRoute from './routes/accountRoute.js'
 
 config()
 connectDB()
@@ -18,6 +21,9 @@ app.use(express.json())
 
 app.use('/api/v2/users', userRoute)
 app.use('/api/v2/employees', employeeRoute)
+app.use('/api/v2/payments', paymentRoute)
+app.use('/api/v2/payrolls', payrollRoute)
+app.use('/api/v2/accounts', accountRoute)
 if (process.env.NODE_ENV === 'development') {
    app.use(morgan('dev'))
 }
