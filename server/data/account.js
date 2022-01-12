@@ -96,3 +96,5 @@ const account = [
       bankName: 'FirstBank',
    },
 ]
+
+export default account

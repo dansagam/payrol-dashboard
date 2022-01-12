@@ -9,6 +9,8 @@ import Employee from './models/employeeModel.js'
 import employee from './data/employees.js'
 import EmployeeAccountDetail from './models/accountModel.js'
 import Customer from './models/customerModel.js'
+import account from './data/account.js'
+import customers from './data/customers.js'
 config()
 connectDB()
 

@@ -24,6 +24,7 @@ const accountSchema = new mongoose.Schema(
       },
       employeeId: {
          type: mongoose.Schema.Types.Number,
+         required: true,
          ref: 'Employee',
       },
    },
