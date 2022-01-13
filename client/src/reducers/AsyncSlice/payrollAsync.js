@@ -28,7 +28,7 @@ export const getPayment = createAsyncThunk(
 
 export const getPaymentById = createAsyncThunk(
    '',
-   async (data, { rejectWithValue, getState }) => {
+   async ({ _id }, { rejectWithValue, getState }) => {
       try {
          const {
             userLogin: { userInfo },
@@ -50,7 +50,7 @@ export const addNewPayroll = createAsyncThunk(
    '',
    async (data, { rejectWithValue, getState }) => {
       try {
-         const { high } = data
+         const { employeeId, periodStartAt } = data
          const {
             userLogin: { userInfo },
          } = getState().User
@@ -60,7 +60,7 @@ export const addNewPayroll = createAsyncThunk(
                Authorization: `Bearer ${userInfo.token}`,
             },
          }
-         const newData1 = { high }
+         const newData1 = { employeeId, periodStartAt }
          const response = await addNewPayrollFunc(newData1, config)
          return response.data
       } catch (err) {
@@ -73,7 +73,7 @@ export const updatePayroll = createAsyncThunk(
    '',
    async (data, { rejectWithValue, getState }) => {
       try {
-         const { _id } = data
+         const { _id, tax, periodStartAt, periodEndAt } = data
          const {
             userLogin: { userInfo },
          } = getState().User
@@ -83,7 +83,7 @@ export const updatePayroll = createAsyncThunk(
                Authorization: `Bearer ${userInfo.token}`,
             },
          }
-         const newData1 = {}
+         const newData1 = { tax, periodStartAt, periodEndAt }
          const response = await updatePayrollFunc(_id, newData1, config)
          return response.data
       } catch (err) {
