@@ -118,3 +118,42 @@ export const registerUser = createAsyncThunk(
       }
    }
 )
+
+export const deleteUser = createAsyncThunk(
+   'user/deleteUser',
+   async ({ _id }, { getState, rejectWithValue }) => {
+      try {
+         const {
+            userLogin: { userInfo },
+         } = getState().User
+         const config = {
+            headers: {
+               Authorization: `Bearer ${userInfo.token}`,
+            },
+         }
+         const response = await deleteUserFunc(_id, config)
+         return response
+      } catch (err) {
+         throw rejectWithValue(err.response)
+      }
+   }
+)
+export const deleteUserSelf = createAsyncThunk(
+   'user/deleteUser',
+   async ({ _id }, { getState, rejectWithValue }) => {
+      try {
+         const {
+            userLogin: { userInfo },
+         } = getState().User
+         const config = {
+            headers: {
+               Authorization: `Bearer ${userInfo.token}`,
+            },
+         }
+         const response = await deleteUserSelfFunc(_id, config)
+         return response
+      } catch (err) {
+         throw rejectWithValue(err.response)
+      }
+   }
+)

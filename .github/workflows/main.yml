@@ -2,8 +2,7 @@ name: Deploy
 
 on:
    push:
-      branches:
-         - deploy
+      branches: [deploy]
 #tets
 jobs:
    build:
