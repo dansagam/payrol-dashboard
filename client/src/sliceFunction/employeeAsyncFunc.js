@@ -13,7 +13,7 @@ export const getEmployeeFunc = async (
       `${apiUrl}/api/v2/employees?keyword=${keyword}&pageNumber=${pageNumber}`,
       config
    )
-   return response
+   return response.data
 }
 export const getEmployeeByIdFunc = async (id, config) => {
    if (process.env.REACT_APP_MOCK_DATA) {
@@ -59,5 +59,5 @@ export const deleteEmployeeFunc = async (id, config) => {
       `${apiUrl}/api/v2/employees/${id}`,
       config
    )
-   return response
+   return response.data
 }

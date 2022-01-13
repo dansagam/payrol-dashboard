@@ -16,7 +16,7 @@ export const getPaymentByIdFunc = async (id, config) => {
    return data
 }
 
-export const newPaymentFunc = async (newData, config) => {
+export const addNewPaymentFunc = async (newData, config) => {
    const { data } = await axios.post(
       `${apiUrl}/api/v2/payments`,
       newData,
