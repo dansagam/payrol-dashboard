@@ -40,7 +40,7 @@ export const getEmployeeById = createAsyncThunk(
                Authorization: `Bearer ${userInfo.token}`,
             },
          }
-         const response = await getEmployeeByIdFunc({ _id }, config)
+         const response = await getEmployeeByIdFunc(_id, config)
          return response.data
       } catch (err) {
          throw rejectWithValue(err.response)
@@ -104,7 +104,7 @@ export const updateEmployeeFinancial = createAsyncThunk(
    'employee/updateEmployeeFinancial',
    async (newData, { rejectWithValue, getState }) => {
       try {
-         const { salaryAmount, salaryMode } = newData
+         const { _id, salaryAmount, salaryMode } = newData
          const {
             userLogin: { userInfo },
          } = getState().User

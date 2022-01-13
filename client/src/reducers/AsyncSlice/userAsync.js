@@ -12,9 +12,8 @@ import {
 
 export const getUsers = createAsyncThunk(
    'user/getUsers',
-   async (newData, { rejectWithValue, getState }) => {
+   async ({ keyword = '', pageNumber = '' }, { rejectWithValue, getState }) => {
       try {
-         const { keyword = '', pageNumber = '' } = newData
          const {
             userLogin: { userInfo },
          } = getState().User

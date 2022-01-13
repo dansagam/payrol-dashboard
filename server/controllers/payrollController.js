@@ -2,6 +2,7 @@ import employeeService from '../services/employeeServices.js'
 import payrollService from '../services/payrollServices.js'
 import { durationCalc, fDateDB } from '../utils/generalUtil.js'
 import nextSequenceValue, { prevSequenceValue } from './counterController.js'
+import accountService from '../services/accountService'
 
 export const getPayrolls = async (req, res, next) => {
    try {
@@ -65,11 +66,19 @@ export const addNewPayroll = async (req, res, next) => {
          /**
           * I have to create an account controller here
           */
+         const accounDetail = await accountService.getByPath({
+            employeeId: employeeId,
+         })
+         if (!accounDetail) {
+            throw new Error(
+               'Account detail no found, please add the account details'
+            )
+         }
          const _id = await nextSequenceValue('employeeid')
          const newData = {
             _id: _id,
             employeeId: existingEmployee._id,
-            accountid: 0,
+            accountid: accounDetail._id,
             periodStartAt: startAt,
             periodMode: existingEmployee.salaryMode,
             rate: existingEmployee.salaryAmount,
