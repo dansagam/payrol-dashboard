@@ -1,4 +1,4 @@
-name: Build Server
+name: Build Client
 
 on:
    push:
@@ -9,7 +9,7 @@ jobs:
       runs-on: ubuntu-latest
       defaults:
          run:
-            working-directory: server
+            working-directory: client
       strategy:
          matrix:
             node-version: [16.x]
@@ -23,12 +23,9 @@ jobs:
               node-version: ${{ matrix.node-version }}
               cache: 'npm'
               cache-dependency-path: '**/package-lock.json'
-         - name: Install dependencies in server
+         - name: Install dependencies in client
            run: npm install
-
-         # - name: Install dependencies in the client
-         #   run: npm install --prefix ../client
-         # - run: npm run build --prefix ../client
+         - run: npm run build
 
          - name: Deploy to Heroku
            uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
@@ -36,4 +33,4 @@ jobs:
               heroku_api_key: ${{secrets.HEROKU_API_KEY}}
               heroku_app_name: ${{secrets.HEROKU_PROJECT_NAME}} #Must be unique in Heroku
               heroku_email: ${{secrets.HEROKU_EMAIL}}
-              appdir: 'server' # <- This will point to the api folder in your project
+              appdir: 'client' # <- This will point to the api folder in your project
