@@ -25,6 +25,7 @@ jobs:
               cache-dependency-path: '**/package-lock.json'
          - name: Install dependencies in server
            run: npm install
+         # - name: Create new folder
 
          # - name: Install dependencies in the client
          #   run: npm install --prefix ../client
