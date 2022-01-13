@@ -6,7 +6,7 @@ import ExpensesViews from './views/Layouts/Expenses'
 import SalesView from './views/Layouts/Sales'
 import ReportView from './views/Layouts/Report'
 import AccountView from './views/Layouts/Accounts'
-// import LogoOnlyLayout from './views/Layouts/LogoOnlyLayout'
+import LogoOnlyLayout from './views/Layouts/LogoOnlyLayout'
 // view screen
 import DashboardApp from './views/Screens/Dashboard/DashboardApp'
 import Expenses from './views/Screens/Expenses/Expenses'
@@ -14,11 +14,13 @@ import Products from './views/Screens/Dashboard/Products'
 import Invoices from './views/Screens/Sales/Invoices'
 import Customers from './views/Screens/Sales/Customers'
 import Users from './views/Screens/Dashboard/Users'
+import Register from './views/Form/Register'
+import Login from './views/Form/Login'
 
 const Routes = () =>
    useRoutes([
       {
-         path: '/',
+         path: '/pay',
          element: <DefaultLayout />,
          children: [
             { index: true, element: <Navigate to="/dashboard" /> },
@@ -96,8 +98,15 @@ const Routes = () =>
                path: 'reports',
                element: <ReportView />,
             },
-            { path: 'login', element: '<Login />' },
-            { path: 'register', element: '<Register />' },
+         ],
+      },
+      {
+         path: '/',
+         element: <LogoOnlyLayout />,
+         children: [
+            { index: true, element: <Navigate to="/login" /> },
+            { path: 'login', element: <Login /> },
+            { path: 'register', element: <Register /> },
             { path: '404', element: '<NotFound />' },
             { path: '*', element: <Navigate to="/404" replace /> },
          ],

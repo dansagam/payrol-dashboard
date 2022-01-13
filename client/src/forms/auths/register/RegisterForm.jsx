@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-// import * as React from 'react'
+import * as React from 'react'
 import * as yup from 'yup'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEyeSlash, faEye, faSpinner } from '@fortawesome/free-solid-svg-icons'
@@ -34,7 +34,7 @@ const RegisterForm = () => {
             name: 'valid email',
             exclusive: true,
             params: { rgEx },
-            message: `${path} must be valid`,
+            message: `path must be valid`,
             test: emailTest,
          })
          .required('Email is required'),
