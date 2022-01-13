@@ -1,36 +1,36 @@
-name: Build Client
+# name: Build Client
 
-on:
-   push:
-      branches: [deploy]
-#tets
-jobs:
-   build:
-      runs-on: ubuntu-latest
-      defaults:
-         run:
-            working-directory: client
-      strategy:
-         matrix:
-            node-version: [16.x]
-      steps:
-         - name: checkout repository
-           uses: actions/checkout@v2
+# on:
+#    push:
+#       branches: [deploy]
+# #tets
+# jobs:
+#    build:
+#       runs-on: ubuntu-latest
+#       defaults:
+#          run:
+#             working-directory: client
+#       strategy:
+#          matrix:
+#             node-version: [16.x]
+#       steps:
+#          - name: checkout repository
+#            uses: actions/checkout@v2
 
-         - name: Node ${{ matrix.node-version }}
-           uses: actions/setup-node@v2
-           with:
-              node-version: ${{ matrix.node-version }}
-              cache: 'npm'
-              cache-dependency-path: '**/package-lock.json'
-         - name: Install dependencies in client
-           run: npm install
-         - run: npm run build
+#          - name: Node ${{ matrix.node-version }}
+#            uses: actions/setup-node@v2
+#            with:
+#               node-version: ${{ matrix.node-version }}
+#               cache: 'npm'
+#               cache-dependency-path: '**/package-lock.json'
+#          - name: Install dependencies in client
+#            run: npm install
+#          - run: npm run build
 
-         - name: Deploy to Heroku
-           uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-           with:
-              heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-              heroku_app_name: ${{secrets.HEROKU_PROJECT_NAME}} #Must be unique in Heroku
-              heroku_email: ${{secrets.HEROKU_EMAIL}}
-              appdir: 'client' # <- This will point to the api folder in your project
+#          - name: Deploy to Heroku
+#            uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+#            with:
+#               heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#               heroku_app_name: ${{secrets.HEROKU_PROJECT_NAME}} #Must be unique in Heroku
+#               heroku_email: ${{secrets.HEROKU_EMAIL}}
+#               appdir: 'client' # <- This will point to the api folder in your project
