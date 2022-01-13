@@ -6,6 +6,8 @@ import {
    // getUserResetFunc,
    loginFunc,
    registerFunc,
+   deleteUserFunc,
+   deleteUserSelfFunc,
 } from '../../sliceFunction/userAsyncFunc'
 
 export const getUsers = createAsyncThunk(
