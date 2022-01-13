@@ -10,6 +10,10 @@ const userSchema = new mongoose.Schema(
          type: Number,
          required: true,
       },
+      avatar: {
+         type: String,
+         default: '/static/mock-images/avatars/avatar_default.jpg',
+      },
       firstName: {
          type: String,
          required: true,
