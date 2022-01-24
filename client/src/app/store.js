@@ -6,10 +6,10 @@ import employeeReducers from '../reducers/employeeSlice'
 
 const store = configureStore({
    reducer: {
-      customer: customerReducers,
-      expense: expenseReducers,
-      user: userReducers,
-      employee: employeeReducers,
+      Customer: customerReducers,
+      Expense: expenseReducers,
+      User: userReducers,
+      Employee: employeeReducers,
    },
 })
 

@@ -23,12 +23,15 @@ const Routes = () =>
          path: '/pay',
          element: <DefaultLayout />,
          children: [
-            { index: true, element: <Navigate to="/dashboard" /> },
+            { index: true, element: <Navigate to="/pay/dashboard" /> },
             {
                path: 'dashboard',
                element: <DashboardLayout />,
                children: [
-                  { index: true, element: <Navigate to="/dashboard/app" /> },
+                  {
+                     index: true,
+                     element: <Navigate to="/pay/dashboard/app" />,
+                  },
                   { path: 'app', element: <DashboardApp /> },
                   { path: 'users', element: <Users /> },
                   { path: 'products', element: <Products /> },
@@ -108,7 +111,8 @@ const Routes = () =>
             { path: 'login', element: <Login /> },
             { path: 'register', element: <Register /> },
             { path: '404', element: '<NotFound />' },
-            { path: '*', element: <Navigate to="/404" replace /> },
+            // { path: 'pay', element: '<Navigate to="/pay" />' },
+            { path: '*', element: <Navigate to="/404" /> },
          ],
       },
       { path: '*', element: <Navigate to="/404" replace /> },

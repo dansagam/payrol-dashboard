@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react'
 import * as yup from 'yup'
+import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEyeSlash, faEye, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
@@ -10,9 +11,14 @@ import Stack from '@mui/material/Stack'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
 import Button from '@mui/material/Button'
+import { registerUser } from '../../../reducers/AsyncSlice/userAsync'
 
 const RegisterForm = () => {
+   const dispatch = useDispatch()
    const navigate = useNavigate()
+   const {
+      userLogin: { userInfo },
+   } = useSelector((state) => state.User)
    const [showPassword, setShowPassword] = React.useState(false)
    const rgEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
    const emailTest = (value) => rgEx.test(value)
@@ -43,8 +49,17 @@ const RegisterForm = () => {
          .min(8, 'Password should be of minimum 8 characters length')
          .required('Password is required'),
    })
-   const handleOnSubmit = () => {
-      navigate('/dashboard')
+   const handleOnSubmit = (values) => {
+      // e.preventDefault()
+      const { email, firstName, lastName, password } = values
+      const newData = {
+         email,
+         lastName,
+         firstName,
+         password,
+      }
+      dispatch(registerUser(newData))
+      // navigate('/dashboard')
    }
    const formik = useFormik({
       initialValues: {
@@ -56,7 +71,11 @@ const RegisterForm = () => {
       validationSchema: RegisterSchema,
       onSubmit: handleOnSubmit,
    })
-
+   React.useEffect(() => {
+      if (userInfo) {
+         navigate('/pay/dashboard', { replace: true })
+      }
+   }, [userInfo, navigate])
    const { errors, touched, isSubmitting, handleSubmit, getFieldProps } = formik
 
    const handleShowPassword = () => {
@@ -124,7 +143,7 @@ const RegisterForm = () => {
                variant="type"
                endIcon={isSubmitting && <FontAwesomeIcon icon={faSpinner} />}
             >
-               Login
+               Register
             </Button>
          </Form>
       </FormikProvider>

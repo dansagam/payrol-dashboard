@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react'
 import * as yup from 'yup'
+import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEyeSlash, faEye, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
@@ -13,9 +14,14 @@ import Checkbox from '@mui/material/Checkbox'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
 import Button from '@mui/material/Button'
+import { loginUser } from '../../../reducers/AsyncSlice/userAsync'
 
 const LoginForm = () => {
+   const dispatch = useDispatch()
    const navigate = useNavigate()
+   const {
+      userLogin: { userInfo },
+   } = useSelector((state) => state.User)
    const [showPassword, setShowPassword] = React.useState(false)
    const LoginSchema = yup.object().shape({
       email: yup
@@ -27,8 +33,14 @@ const LoginForm = () => {
          .min(8, 'Password should be of minimum 8 characters length')
          .required('Password is required'),
    })
-   const handleOnSubmit = () => {
-      navigate('/dashboard')
+   const handleOnSubmit = (values) => {
+      const { email, password } = values
+      const newData = {
+         email,
+         password,
+      }
+      dispatch(loginUser(newData))
+      // navigate('/dashboard')
    }
    const formik = useFormik({
       initialValues: {
@@ -48,6 +60,11 @@ const LoginForm = () => {
       handleSubmit,
       getFieldProps,
    } = formik
+   React.useEffect(() => {
+      if (userInfo) {
+         navigate('/pay/dashboard', { replace: true })
+      }
+   }, [userInfo, navigate])
 
    const handleShowPassword = () => {
       setShowPassword((prev) => !prev)
