@@ -2,7 +2,7 @@ import employeeService from '../services/employeeServices.js'
 import payrollService from '../services/payrollServices.js'
 import { durationCalc, fDateDB } from '../utils/generalUtil.js'
 import nextSequenceValue, { prevSequenceValue } from './counterController.js'
-import accountService from '../services/accountService'
+import accountService from '../services/accountService.js'
 
 export const getPayrolls = async (req, res, next) => {
    try {

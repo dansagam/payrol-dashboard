@@ -57,7 +57,7 @@ const Login = () => (
                Hi, Welcome Back
             </Typography>
             <img
-               src="/static/illustrations/illustration_register.png"
+               src="/static/illustrations/illustration_login.png"
                alt="login"
             />
          </SectionStyle>
@@ -66,13 +66,25 @@ const Login = () => (
          <ContentStyle>
             <Stack sx={{ mb: 5 }}>
                <Typography variant="h4" gutterBottom>
-                  Sign in to Minimal
+                  Sign in to Payroll
                </Typography>
                <Typography sx={{ color: 'text.secondary' }}>
                   Enter your details below.
                </Typography>
             </Stack>
             <LoginForm />
+            <Paper sx={{ display: { md: 'none', xs: 'block' } }}>
+               <Typography variant="body2" align="center" sx={{ mt: 3 }}>
+                  Don&lsquo;t have an account?&nbsp;
+                  <Link
+                     variant="subtitle2"
+                     component={RouterLink}
+                     to="register"
+                  >
+                     Get started
+                  </Link>
+               </Typography>
+            </Paper>
          </ContentStyle>
       </Container>
    </RootStyle>
